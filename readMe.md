@@ -125,3 +125,32 @@ Functionality:
 - Pic card Title Color: Black;
 - Pic Card Background Color: rgba(0, 0, 0, 0.219);
 - Pic Card Font: font-family:cursive;
+
+### Media Queries:
+
+/_! -------------- TABLET (Small) ---------------- _/
+
+@media screen and (max-width: 649px) and (min-width: 450px) {
+body {
+background: yellow;
+}
+}
+
+/_! -------------- TABLET (Large ---------------- _/
+@media screen and (max-width: 849px) and (min-width: 650px) {
+body {
+background: teal;
+}
+}
+/_! -------------- LAPTOP (Small)---------------- _/
+@media screen and (max-width: 1299px) and (min-width: 850px) {
+body {
+background: orange;
+}
+}
+/_! -------------- LAPTOP (Large)---------------- _/
+@media screen and (min-width: 1300px) {
+body {
+background: lightblue;
+}
+}

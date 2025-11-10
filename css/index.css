@@ -193,6 +193,29 @@ header p:hover {
   text-align: center;
 }
 
-/*!  --------------  TABLET ---------------- */
-/*t    --------------  TABLET ---------------- */
-/*!   --------------  LAPTOP ---------------- */
+/*!  --------------  TABLET (Small) ---------------- */
+
+@media screen and (max-width: 649px) and (min-width: 450px) {
+  body {
+    background: yellow;
+  }
+}
+
+/*!    --------------  TABLET (Large ---------------- */
+@media screen and (max-width: 849px) and (min-width: 650px) {
+  body {
+    background: teal;
+  }
+}
+/*!   --------------  LAPTOP (Small)---------------- */
+@media screen and (max-width: 1299px) and (min-width: 850px) {
+  body {
+    background: orange;
+  }
+}
+/*!   --------------  LAPTOP (Large)---------------- */
+@media screen and (min-width: 1300px) {
+  body {
+    background: lightblue;
+  }
+}
