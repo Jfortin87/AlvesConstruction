@@ -1,0 +1,35 @@
+/*!        ---------   All Pages   (Background Animation)  ---------- */
+
+/*. ---  @ Properties / @ Keyframes ---   */
+@property --startBgColor {
+  syntax: "<color>";
+  initial-value: #ffffff;
+  inherits: false;
+}
+
+@property --endBgColor {
+  syntax: "<color>";
+  initial-value: #d4d4d4;
+  inherits: false;
+}
+
+@keyframes bgColor {
+  0%,
+  30% {
+    --startBgColor: #ffffff;
+    --endBgColor: #d4d4d4;
+  }
+
+  40% {
+    --startBgColor: #d8d6d6;
+    --endBgColor: #d4d4d4;
+  }
+  80% {
+    --startBgColor: #b8b6b6;
+    --endBgColor: #b1cfe9;
+  }
+  100% {
+    --endBgColor: #d4d4d4;
+    --startBgColor: #ffffff;
+  }
+}

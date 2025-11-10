@@ -1,0 +1,198 @@
+/*!   --------------  MOBILE ---------------- */
+
+/*.     Universal Styles (-Body-)  */
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: linear-gradient(var(--startBgColor), var(--endBgColor));
+  animation: bgColor 10s linear infinite;
+  transform: ease;
+  scroll-behavior: smooth;
+}
+
+/*mt      Company Name / Banner Phrase     */
+header h1 {
+  /* border: 1px solid black; */
+  font-size: 2rem;
+  font-family: cursive;
+  background-color: lightgray;
+  color: black;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-shadow: 1px 1px white;
+}
+
+header p {
+  /* border: 1px solid black; */
+  width: 90%;
+  height: 3rem;
+  font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  text-align: center;
+  padding: 5px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+header p:hover {
+  color: rgb(103, 153, 29);
+}
+
+/*mt   Picture Bar  (Mobile)    */
+
+.picBar_Cont {
+  display: grid;
+  grid-template-columns: auto auto;
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  width: 95%;
+  height: 20rem;
+  background-color: white;
+  margin: 0 auto;
+  margin-bottom: 75px;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.picBarCont_titleCont {
+  /* border: 1px solid yellow; */
+  grid-column: span 2;
+  /* height: 2.5rem; */
+}
+
+.picBarCont_Title {
+  grid-column: span 2;
+  /* border: 1px solid green; */
+  height: 2rem;
+  text-align: center;
+}
+
+.picBar_Cont section {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 10px;
+  margin-top: 5px;
+}
+
+.job_Title {
+  color: black;
+  background-color: rgba(0, 0, 0, 0.219);
+  font-size: 16px;
+  font-family: cursive;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/*mt   Video Bar   */
+
+.videoBar_Cont {
+  border: 1px inset black;
+  width: 95%;
+  margin: 0 auto;
+  margin-bottom: 75px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.videoBar_Cont video {
+  width: 100%;
+  /* height: 25rem; */
+}
+
+/*mt    Comments / Reviews / Link to Form   */
+
+.comments_Bar {
+  /* border: 1px solid red; */
+  background-color: white;
+  width: 95%;
+  padding-bottom: 10px;
+  margin: 0 auto;
+  margin-bottom: 75px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.comments_Link {
+  /* border: 1px solid blue; */
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+
+.comments_Link h2 {
+  text-align: center;
+  font-size: 20px;
+  font-family: cursive;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.comments_Link a {
+  display: block;
+  border-radius: 5px;
+  width: 100px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 2px;
+  font-size: 12px;
+  font-family: sans-serif;
+  margin: 0 auto;
+  text-decoration: none;
+}
+
+/**   Comments Section Hover Effects   */
+.comments_Link a:hover {
+  background-color: rgb(65, 64, 64);
+  color: greenyellow;
+}
+
+.commentsList_Cont {
+  /* border: 1px solid orange; */
+  width: 95%;
+  padding: 5px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.commentsList_Cont section {
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.219);
+  padding: 5px;
+  font-family: cursive;
+  margin-bottom: 10px;
+}
+
+.commentsList_Cont section:hover {
+  background-color: rgb(65, 64, 64);
+  color: greenyellow;
+  transform: scale(1.05);
+  transition: transform 0.5s ease;
+}
+
+.commentsList_Cont section p {
+  /* border: 1px solid black; */
+  font-size: 10px;
+  color: greenyellow;
+  /* margin-bottom: 5px; */
+}
+
+.commentsList_Cont section p:last-child {
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: white;
+  color: black;
+  margin-top: 20px;
+  padding: 5px;
+  text-align: center;
+}
+
+/*!  --------------  TABLET ---------------- */
+/*t    --------------  TABLET ---------------- */
+/*!   --------------  LAPTOP ---------------- */

@@ -1,0 +1,172 @@
+/*!                About Page Styles           */
+
+/*.     Universal Styles    (-Body-) */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(var(--startBgColor), var(--endBgColor));
+  animation: bgColor 10s linear infinite;
+  transform: ease;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+/*mt         ---  Top Banner  ---          */
+.topBanner_Cont {
+  /* border: 1px solid red; */
+  background-color: lightgray;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 10px;
+}
+
+#topBannerImage {
+  display: block;
+  /* border: 1px solid green;+ */
+  background-color: white;
+  border-radius: 60px;
+  height: 120px;
+  width: 120px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/*st    Media Links    */
+.mediaLinks_Cont {
+  /* border: 1px solid black; */
+  text-align: center;
+  padding: 1px;
+  margin-top: 25px;
+}
+
+.mediaLinks_Cont a {
+  display: inline-block;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: black;
+  font-size: 30px;
+  margin: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/*st    Media Links Color   */
+.fa-square-facebook {
+  color: blue;
+}
+
+.fa-square-instagram {
+  color: #940350;
+}
+
+.fa-square-linkedin {
+  color: rgba(1, 1, 250, 0.664);
+}
+
+.fa-google {
+  color: grey;
+}
+
+/*st    Media Links Hover Effects  */
+.mediaLinks_Cont a:hover {
+  border: 1px solid black;
+  position: relative;
+  background-color: lightslategrey;
+  border-radius: 5px;
+  animation: iconMove 1s linear infinite;
+}
+
+.fa-google:hover {
+  color: white;
+}
+
+/*st    About Owner   */
+.topBanner_Cont section:nth-of-type(2) {
+  display: block;
+  /* border: 1px solid orange; */
+  /* height: 100px; */
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.ownerInfo_Cont {
+  /* border: 1px solid black; */
+  padding: 2px;
+}
+
+.ownerInfo_Cont h3 {
+  /* border: 1px solid green; */
+  font-size: 35px;
+  font-family: cursive;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  text-shadow: 1px 1px white;
+}
+
+.ownerInfo_Cont p {
+  /* border: 1px solid brown; */
+  border-radius: 5px;
+  width: 95%;
+  color: black;
+  background-color: white;
+  font-size: 18px;
+  font-family: cursive;
+  text-align: justify;
+  text-indent: 1cm;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+/*mt   --- Work We Do Section ---   */
+.workWeDo_Cont {
+  /* border: 1px solid black; */
+  background-color: rgba(0, 0, 0, 0.219);
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.workWeDo_Cont h2 {
+  text-align: center;
+  font-family: cursive;
+  font-size: 35px;
+  /* margin-bottom: 30px; */
+  text-shadow: 1px 1px white;
+}
+
+.workWeDo_Cont div h3 {
+  text-align: center;
+  font-family: cursive;
+  font-size: 25px;
+  text-decoration: underline;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px white;
+}
+
+.list_Cont {
+  display: grid;
+  grid-template-columns: auto auto;
+  border: 1px inset white;
+  background-color: white;
+  column-gap: 5px;
+  padding: 10px;
+}
+
+.list_Cont h4 {
+  grid-column: span 2;
+  text-align: center;
+  font-size: 22px;
+  font-family: cursive;
+  margin-bottom: 25px;
+}
+
+.list_Cont li {
+  /* border: 1px solid brown; */
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 12px;
+}

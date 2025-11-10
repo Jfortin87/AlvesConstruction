@@ -1,0 +1,106 @@
+/*! All  */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/*! Logo */
+
+.logo_Cont {
+  display: flex;
+  /* border: 1px solid blue; */
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  border-radius: 10px;
+  color: white;
+  height: 40px;
+  font-size: 35px;
+  font-weight: bold;
+  padding: 5px;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.logo:hover {
+  animation: spinLogo 3s linear infinite;
+  color: greenyellow;
+}
+
+/*?  Logo Animation Spin on Hover (spinLogo) */
+@keyframes spinLogo {
+  100% {
+    transform: rotate(360deg);
+  }
+
+  /* to {
+        transform: rotate(360deg);
+    } */
+}
+
+/*! Navigation */
+
+/**  Nav Icons */
+
+li a {
+  border: 1px solid white;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 2px;
+}
+
+/** Back Up Nav Btns */
+nav {
+  position: sticky;
+  border: 1px solid black;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: black;
+  height: 100px;
+  top: 0;
+  z-index: 1;
+}
+
+ul {
+  display: flex;
+  /* border: 1px solid red; */
+  list-style-type: none;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+li {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/** Back Up Nav Btns */
+/* li a {
+  border: 1px solid green;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 1px;
+} */
+
+li a:hover {
+  border: 1px solid white;
+  border-radius: 5px;
+  color: greenyellow;
+  background-color: rgb(65, 64, 64);
+}
+
+/*? Navigation active Class */
+.nav_Active {
+  /* border: 1px solid white; */
+  border-radius: 5px;
+  background-color: rgb(65, 64, 64);
+  color: greenyellow;
+}

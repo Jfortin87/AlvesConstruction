@@ -1,0 +1,160 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* background-color: rgb(230, 230, 230); */
+  background: linear-gradient(var(--startBgColor), var(--endBgColor));
+  animation: bgColor 10s linear infinite;
+  transform: ease;
+  scroll-behavior: smooth;
+}
+
+/*mt        Header        */
+header h1 {
+  font-size: 2rem;
+  font-family: cursive;
+  background-color: lightgray;
+  color: black;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 4rem;
+  cursor: pointer;
+  text-shadow: 1px 1px white;
+}
+
+/*mt      Comments Form      */
+#commentsForm {
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  background-color: white;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/**  Form Name Inputs */
+#name,
+#comment {
+  border: 1px inset #ccc;
+  border-radius: 3px;
+  background-color: aliceblue;
+  color: rgb(8, 1, 104);
+  width: 100%;
+  font-size: 1rem;
+  font-family: cursive;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+/** Form Email Input */
+#commentsForm textarea {
+  border: 1px inset #ccc;
+  border-radius: 3px;
+  background-color: aliceblue;
+  color: rgb(8, 1, 104);
+  width: 100%;
+  height: 100px;
+  font-size: 1rem;
+  font-family: cursive;
+  margin-bottom: 15px;
+  padding: 5px;
+}
+
+/** Form Rating Container */
+.jobRating_Cont {
+  display: flex;
+  /* border: 1px solid green; */
+  justify-content: space-between;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.jobRating_Cont label {
+  font-size: 1rem;
+  font-family: cursive;
+}
+
+#jobRating {
+  display: flex;
+  border: 1px outset black;
+  border-radius: 3px;
+  background-color: black;
+  color: white;
+  width: 60px;
+  padding: 3px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.233);
+}
+
+#jobRating:hover {
+  border: 1px outset greenyellow;
+  background-color: rgb(65, 64, 64);
+  color: greenyellow;
+}
+
+/** Previous Customer Container */
+.prevCustomer_Cont {
+  /* border: 1px solid green; */
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.prevCustomer_Cont p {
+  font-size: 1rem;
+  font-family: cursive;
+}
+
+.prevCustomer_Cont label {
+  font-size: 1rem;
+  font-family: cursive;
+}
+
+.prevC-yes {
+  font-family: cursive;
+}
+
+.prevC-no {
+  font-family: cursive;
+}
+
+/* #prevC-yes,
+#prevC-no {
+  display: flex;
+  border: 1px outset black;
+  border-radius: 3px;
+  background-color: black;
+  color: white;
+  width: 60px;
+  padding: 3px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.233);
+} */
+
+/*
+#prevC-yes:hover,
+#prevC-no:hover {
+  border: 1px outset greenyellow;
+  background-color: rgb(65, 64, 64);
+  color: greenyellow;
+} */
+
+/** Form Submit Button */
+#commentsForm button {
+  display: block;
+  border: 1px outset black;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  margin: 0 auto;
+  padding: 5px 10px;
+  font-size: 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.233);
+  cursor: pointer;
+}
+
+#commentsForm button:hover {
+  border: 1px outset greenyellow;
+  background-color: rgb(65, 64, 64);
+  color: greenyellow;
+}

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://kit.fontawesome.com/f82cae9f3d.js"
+            crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="/css/navBar.css" />
+        <link rel="stylesheet" href="/css/@Properties/background.css" />
+        <link rel="stylesheet" href="/css/Forms/contactForm.css" />
+        <link rel="stylesheet" href="/css/footer.css" />
+
+        <title>Contact Form</title>
+    </head>
+
+    <body>
+        <nav>
+            <div class="logo_Cont">
+                <p class="logo">𝒯𝒜</p>
+            </div>
+
+            <!--! Alternative Navigation (Word Btns) -->
+            <!-- <ul>
+                <li><a href="index.html" class="nav_Active">Home</a></li>
+                <li><a href="html/about.html">About</a></li>
+                <li><a href="html/pictures.html">Pictures</a></li>
+                <li><a href="html/contact.html">Contact</a></li>
+            </ul> -->
+
+            <!--! Icon Navigation -->
+            <ul>
+                <li>
+                    <a href="../../index.html" title="Home"><i
+                            class="fa-regular fa-house"></i></a>
+                </li>
+                <li>
+                    <a href="/html/pages/about.html" title="About"><i
+                            class="fa-regular fa-address-card"></i></a>
+                </li>
+                <li>
+                    <a href="/html/pages/pictures.html" title="Pictures"><i
+                            class="fa-regular fa-images"></i></a>
+                </li>
+                <li>
+                    <a href="/html/pages/contact.html" title="Contact"><i
+                            class="fa-regular fa-address-book"></i></a>
+                </li>
+            </ul>
+        </nav>
+
+        <header>
+            <h1 title="Contact Form">Contact Us</h1>
+        </header>
+
+        <form id="contactForm">
+            <input type="text" id="name" name="name" minlength="3"
+                maxlength="20" placeholder="Enter your Name:" required />
+
+            <input type="tel" id="phone" name="phone"
+                pattern="([0-9]{3})[ ][0-9]{3}-[0-9]{4}"
+                placeholder="Phone Format: (123) 456-7890" required />
+
+            <input type="email" id="email" name="email"
+                placeholder="Enter your Email:" required />
+
+            <input type="text" id="address" name="address"
+                placeholder="Enter your Address:" required />
+
+            <textarea id="message" name="message" minlength="20"
+                placeholder="Enter your Message/ Job Info:" required></textarea>
+
+            <div class="formType_Cont">
+                <label for="formType" placeholder="Pick Contact type">Choose
+                    Form Type:</label>
+                <select id="formType" name="formType"
+                    placeholder="Pick Contact type" required>
+                    <option value="Contact">Contact</option>
+                    <option value="Estimate">Estimate</option>
+                    <option value="Issue">Issue</option>
+                    <option value="Inquiry">Inquiry</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="formRating_Cont">
+                <label class="test" for="rating">Rate your experience:</label>
+                <input type="number" id="rating" name="rating" value="100"
+                    min="1" max="100" />
+            </div>
+
+            <button type="submit" title="Submit Form">Submit</button>
+        </form>
+
+        <!--! Footer  -->
+        <footer>
+
+            <h1>Quick Links</h1>
+
+            <!--st    Media Links   -->
+            <div class="footerMediaLinks_Cont">
+                <a
+                    href="http://wwww.facebook.com"
+                    title="Facebook"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fa-brands fa-square-facebook"></i>
+                </a>
+                <a
+                    href="http://wwww.facebook.com"
+                    title="Twitter"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fa-solid fa-square-xmark"></i>
+                </a>
+                <a
+                    href="http://wwww.facebook.com"
+                    title="Instagram"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fa-brands fa-square-instagram"></i>
+                </a>
+                <a
+                    href="http://wwww.facebook.com"
+                    title="LinkedIn"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fa-brands fa-square-linkedin"></i>
+                </a>
+                <a
+                    href="http://wwww.facebook.com"
+                    title="Google Pages"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fa-brands fa-google"></i>
+                </a>
+            </div>
+
+            <section>
+                <a href="/index.html">Home</a>
+                <a href="/html/pages/about.html">About</a>
+                <a href>Services</a>
+                <a href="/html/pages/pictures.html">Pictures</a>
+                <a href="/html/pages/contact.html">Contact</a>
+            </section>
+            <section>
+                <a href="/html/pages/pictures.html">Videos</a>
+                <a href="/html/pages/comments.html">Comments</a>
+                <a href>Test</a>
+            </section>
+            <section>
+                <a href="html/forms/contactForm.html" class="nav_Active">Contact
+                    US</a>
+                <a href>Get a Quote</a>
+                <a href>Test</a>
+                <a href>Test</a>
+            </section>
+
+        </footer>
+    </body>
+
+</html>

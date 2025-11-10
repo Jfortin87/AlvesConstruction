@@ -1,0 +1,148 @@
+/*.     -------  Pictures  Styles  -------  */
+
+/*!   ----------------    Mobile   ----------------------     */
+
+/*.     Universal Styles (-Body-)  */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: linear-gradient(var(--startBgColor), var(--endBgColor));
+  animation: bgColor 10s linear infinite;
+  transform: ease;
+  scroll-behavior: smooth;
+}
+
+/*mt    Header    */
+header h1 {
+  /* border: 1px solid black; */
+  font-size: 2rem;
+  font-family: cursive;
+  background-color: lightgray;
+  color: black;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-shadow: 1px 1px white;
+}
+
+/*mt         Pictures By Job/ Address         */
+.jobs_Cont {
+  /* border: 1px solid black; */
+  font-family: cursive;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 5px;
+}
+
+/*st   Job Container   */
+.jobAddress_Cont {
+  /* border: 1px solid blue; */
+  border-radius: 5px;
+  background-color: white;
+  margin-bottom: 2rem;
+  text-align: center;
+  padding: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.jobAddress_Cont h1 {
+  color: black;
+  margin-bottom: 2rem;
+}
+
+/*st  Job Pictures Container   */
+.pictures_Cont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* border: 1px solid green; */
+  padding: 1px;
+}
+
+/*st   Before Pictures Container   */
+/* .before_Cont {
+  border: 1px solid rgb(250, 1, 250);
+} */
+
+.before_Cont img {
+  display: block;
+  border: 1px solid yellow;
+  width: 140px;
+  height: 150px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+/*st   After Pictures Container   */
+/* .after_Cont {
+  border: 1px solid rgb(1, 250, 55);
+} */
+
+.after_Cont img {
+  display: block;
+  border: 1px solid rgb(255, 238, 2);
+  width: 140px;
+  height: 150px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+/*st   Completed Pictures Container   */
+.completed_Cont {
+  display: grid;
+  grid-template-columns: auto auto;
+  /* border: 1px solid red; */
+}
+
+.completed_Cont h2 {
+  grid-column: span 2;
+  margin-top: 1rem;
+}
+
+.completed_Cont img {
+  border: 1px solid yellow;
+  width: 140px;
+  height: 150px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+/*mt   Video Container   */
+.videoBar_Cont {
+  /* border: 1px solid black; */
+  padding: 5px;
+  margin-bottom: 2rem;
+}
+
+.videos_Cont {
+  /* border: 1px solid red; */
+  border-radius: 5px;
+  background-color: white;
+  margin: 0 auto;
+  padding: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.video_Cont {
+  /* border: 1px solid green; */
+  /* padding: 5px; */
+  margin-bottom: 2rem;
+}
+
+.video_Cont h2 {
+  font-family: cursive;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.video_Cont video {
+  border: 2px inset black;
+  width: 100%;
+  padding: none;
+}
+
+/*!   ----------------    Desktop   ----------------------     */
