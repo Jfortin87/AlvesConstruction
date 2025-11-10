@@ -77,3 +77,4 @@ dist/
 #! Angular
 dist/
 .angular/
+desktop.ini
