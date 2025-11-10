@@ -45,9 +45,14 @@ This website showcases the services offered by Alves Construction, including res
 3. Footer (Add)
 4. Add search bar to about page (to search for type of work)
 5. Add Search bar to Pictures page ( to search for pictures by job address)
+6. Add enlarged view page for pictures ( Each By Address - click picture to enlarge)
+7. Tablet and Laptop responsiveness
+8. Link social media icons
+9. Form functionality
+10. Comments Section Functionality
+11.
 
-
-#### Color Palette:
+## Color Palette:
 
 ###### Hover Colors:
 
