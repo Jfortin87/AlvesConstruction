@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="/css/navBar.css" />
         <link rel="stylesheet" href="/css/@Properties/background.css" />
         <link rel="stylesheet" href="/css/Forms/commentsForm.css" />
+        <link rel="stylesheet" href="/css/pages/comments.css" />
         <link rel="stylesheet" href="/css/footer.css" />
 
         <title>Comments</title>
@@ -54,6 +55,7 @@
             <h1 title="Comments">Comments</h1>
         </header>
 
+        <!--!    Comments Form    -->
         <form id="commentsForm">
             <input type="text" id="name" name="name" minlength="3"
                 maxlength="20" placeholder="Enter your Name:" required />
@@ -61,12 +63,12 @@
             <textarea id="comment" name="comment" minlength="10"
                 placeholder="Enter your Comment:" required></textarea>
 
-            <div class="jobRating_Cont">
+            <!-- <div class="jobRating_Cont">
                 <label class="test" for="jobRating">Rate your
                     experience:</label>
                 <input type="number" id="jobRating" name="jobRating" value="100"
                     min="1" max="100" />
-            </div>
+            </div> -->
 
             <div class="prevCustomer_Cont">
                 <p>Are you a previous Customer?</p>
@@ -85,7 +87,61 @@
             <button type="submit" title="Submit Form">Submit</button>
         </form>
 
-        <!--! Footer  -->
+        <!--!    Comments Bar    -->
+        <div class="comments_Bar">
+
+            <div class="comments_Link">
+                <h2>Customer Reviews</h2>
+            </div>
+
+                <div class="commentsList_Cont">
+
+                    <section>
+                        <h3>Jane Doe</h3>
+                        <p>Rating: 40</p>
+                        <p>Great service! </p>
+                    </section>
+
+                    <section>
+                        <h3>Jenny</h3>
+                        <p>Rating: 30</p>
+                        <p>Fast and friendly service. The team was professional,
+                            arrived on time, and completed the job ahead of
+                            schedule. They kept the work area clean and
+                            explained
+                            every step of the process. Highly recommend
+                            Alves Construction for any home improvement
+                            needs!</p>
+                    </section>
+
+                    <section>
+                        <h3>Billy</h3>
+                        <p>Rating: 25</p>
+                        <p>The service was okay.</p>
+                    </section>
+
+                    <section>
+                        <h3>Stu</h3>
+                        <p>Rating: 20</p>
+                        <p>Could be better.</p>
+                    </section>
+                    <section>
+                        <h3>Ben</h3>
+                        <p>Rating: 15</p>
+                        <p>Satisfied with the work.</p>
+                    </section>
+
+                    <section>
+                        <h3>Tim</h3>
+                        <p>Rating: 10</p>
+                        <p>Not satisfied with the work.</p>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+
+        <!--!  footer -->
         <footer>
 
             <h1>Quick Links</h1>
@@ -138,11 +194,12 @@
             </section>
             <section>
                 <a href="/html/pages/pictures.html">Videos</a>
-                <a href="/html/pages/comments.html">Comments</a>
+                <a href="/html/pages/comments.html"
+                    class="nav_Active">Comments</a>
                 <a href>Test</a>
             </section>
             <section>
-                <a href="html/forms/contactForm.html" class="nav_Active">Contact
+                <a href="html/forms/contactForm.html">Contact
                     US</a>
                 <a href>Get a Quote</a>
                 <a href>Test</a>
@@ -150,6 +207,7 @@
             </section>
 
         </footer>
+
     </body>
 
 </html>

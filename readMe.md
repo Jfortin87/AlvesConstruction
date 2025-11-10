@@ -34,7 +34,7 @@ This website showcases the services offered by Alves Construction, including res
 
 ## Notes
 
-#### ERRORS:
+# ERRORS:
 
 1. Below auto typing banner there is a blinking cursor
 
@@ -51,6 +51,19 @@ This website showcases the services offered by Alves Construction, including res
 9. Form functionality
 10. Comments Section Functionality
 11.
+
+# Todo's By Page:
+
+### Comments Page:
+
+style:
+
+- remove rate experience
+-
+
+Functionality:
+
+- Date of message when posted
 
 ## Color Palette:
 
