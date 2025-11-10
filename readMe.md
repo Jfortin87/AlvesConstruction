@@ -54,11 +54,27 @@ This website showcases the services offered by Alves Construction, including res
 
 # Todo's By Page:
 
+### Home Page:
+
+### About Page:
+
+### Contact Page:
+
+### Pictures/ Video Page:
+
+style:
+
+- blank
+
+Functionality:
+
+- A simple search bar to search for pictures by job address
+
 ### Comments Page:
 
 style:
 
-- remove rate experience
+- remove rate experience (DONE)
 -
 
 Functionality:
