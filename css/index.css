@@ -154,9 +154,11 @@ header p:hover {
 .commentsList_Cont {
   /* border: 1px solid orange; */
   width: 95%;
+  height: 30rem;
   padding: 5px;
   margin: 0 auto;
   margin-top: 20px;
+  overflow: scroll;
 }
 
 .commentsList_Cont section {
@@ -195,11 +197,7 @@ header p:hover {
 
 /*!  --------------  TABLET (Small) ---------------- */
 
-@media screen and (max-width: 649px) and (min-width: 450px) {
-  body {
-    background: yellow;
-  }
-}
+@media screen and (max-width: 649px) and (min-width: 450px) {}
 
 /*!    --------------  TABLET (Large ---------------- */
 @media screen and (max-width: 849px) and (min-width: 650px) {
@@ -207,12 +205,14 @@ header p:hover {
     background: teal;
   }
 }
+
 /*!   --------------  LAPTOP (Small)---------------- */
 @media screen and (max-width: 1299px) and (min-width: 850px) {
   body {
     background: orange;
   }
 }
+
 /*!   --------------  LAPTOP (Large)---------------- */
 @media screen and (min-width: 1300px) {
   body {
