@@ -1,0 +1,20 @@
+{
+  "name": "alvesconstruction",
+  "version": "1.0.0",
+  "description": "Alves Construction Website",
+  "homepage": "https://github.com/Jfortin87/AlvesConstruction#readme",
+  "bugs": {
+    "url": "https://github.com/Jfortin87/AlvesConstruction/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jfortin87/AlvesConstruction.git"
+  },
+  "license": "MIT",
+  "author": "jFortin",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
