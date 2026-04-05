@@ -1,11 +1,15 @@
-//!     SERVER - routes/comments.js
+//!     SERVER/ - routes/comments.js
 //mt  Comments API routes
 
-
-const express = require("express");
-const { v4: uuidv4 } = require("uuid");
-const sanitizeHtml = require("sanitize-html");
-const db = require("../db");
+//mt Imports
+// const express = require("express");
+// const { v4: uuidv4 } = require("uuid");
+// const sanitizeHtml = require("sanitize-html");
+// const db = require("../db");
+import express from "express";
+import { v4 as uuidv4 } from "uuid";
+import sanitizeHtml from "sanitize-html";
+import db from "../db.js";
 
 //mt Create router
 const router = express.Router();
@@ -112,6 +116,7 @@ router.post("/", (req, res) => {
 });
 
 //mt PUT/ UPDATE    (-- PUT -- Validate, sanitize, check token, 24h rule, update in DB)
+// localhost:3000/api/comments/:id
 router.put("/:id", (req, res) => {
     try {
         const { id } = req.params;
@@ -174,6 +179,7 @@ router.put("/:id", (req, res) => {
 
 
 //mt DELETE/ REMOVE    (-- DELETE -- Check token, delete from DB)
+// localhost:3000/api/comments/:id
 router.delete("/:id", (req, res) => {
     try {
         const { id } = req.params;
@@ -204,4 +210,4 @@ router.delete("/:id", (req, res) => {
 });
 
 //mt Export router
-module.exports = router; ``
+export default router;

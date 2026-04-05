@@ -1,5 +1,14 @@
+//! DotENV setup
+// import dotenv from "dotenv";
+// dotenv.config();
+// console.log(process.env)
+// console.log("API URL:", process.env.COMM_URL);
+
 //mt API endpoint
+// const API_URL = process.env.COMM_URL;
 const API_URL = "http://localhost:3000/api/comments";
+
+
 
 //mt (GET) Load comments and display them
 // Handle form submission

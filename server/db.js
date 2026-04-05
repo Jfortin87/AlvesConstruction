@@ -1,8 +1,10 @@
 //mt Database setup using better-sqlite3
-const Database = require("better-sqlite3");
+// const Database = require("better-sqlite3");
+import Database from "better-sqlite3";
 
 //mt  Create or open database
-const db = new Database("comments.db");
+// const db = new Database("comments.db");
+const db = new Database(process.env.DB_FILE || "comments.db");
 
 //mt Create table if it doesn't exist
 db.prepare(`
@@ -20,4 +22,4 @@ db.prepare(`
 
 
 //mt Export database
-module.exports = db;
+export default db;
