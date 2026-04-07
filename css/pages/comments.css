@@ -73,3 +73,37 @@
   padding: 5px;
   text-align: center;
 }
+
+
+/*!   For  Comments Edit ( comments.js ) */
+.comment-card {
+  background: #1e1e1e;
+  color: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.comment-actions {
+  margin-top: 10px;
+}
+
+.comment-actions button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+
+/*!  Comments- Star Rating Styles */
+.comment-rating {
+  font-size: 1.2rem;
+  color: gold;
+}
+
+/*!  Average-    Star Rating */
+
+#avgRating {
+  font-size: 1.2rem;
+  color: gold;
+}

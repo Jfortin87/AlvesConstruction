@@ -64,12 +64,12 @@ header h1 {
 }
 
 /** Form Rating Container */
-.jobRating_Cont {
+/*@ .jobRating_Cont {
   display: flex;
-  /* border: 1px solid green; */
-  justify-content: space-between;
-  padding: 5px;
-  margin-bottom: 10px;
+  border: 1px solid green;
+justify-content: space-between;
+padding: 5px;
+margin-bottom: 10px;
 }
 
 .jobRating_Cont label {
@@ -92,6 +92,22 @@ header h1 {
   border: 1px outset greenyellow;
   background-color: rgb(65, 64, 64);
   color: greenyellow;
+} */
+
+.star-rating {
+  display: flex;
+  gap: 5px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.star-rating span {
+  color: gray;
+  transition: 0.2s;
+}
+
+.star-rating span.active {
+  color: gold;
 }
 
 /** Previous Customer Container */
