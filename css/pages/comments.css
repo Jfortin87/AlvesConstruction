@@ -95,8 +95,15 @@
 }
 
 
-/*!  Star Rating Styles */
+/*!  Comments- Star Rating Styles */
 .comment-rating {
+  font-size: 1.2rem;
+  color: gold;
+}
+
+/*!  Average-    Star Rating */
+
+#avgRating {
   font-size: 1.2rem;
   color: gold;
 }

@@ -32,6 +32,35 @@ async function loadComments() {
     const res = await fetch(API_URL);
     const comments = await res.json();
 
+    //st Update comment count in UI
+    const countEl = document.getElementById("commentCount");
+
+    // If count element exists, update.
+    if (countEl) {
+        countEl.textContent = `(${comments.length})`;
+    }
+
+
+    //st Rating Star Average
+    const avgEl = document.getElementById("avgRating");
+
+    // If avg element exists, calculate average rating and update UI. Otherwise, skip.
+    if (avgEl) {
+        if (comments.length) {
+            const total = comments.reduce((sum, c) => sum + c.rating, 0);
+
+            const avg = total / comments.length;
+            avg.classList = "comms-AverageStarRating";
+
+
+            avgEl.innerHTML =
+                ` ${renderStars(avg)} (${(avg / 20).toFixed(1)})`;
+
+        } else {
+            avgEl.innerHTML = "☆☆☆☆☆ (0.0)";
+        }
+    }
+
     //! LOGGING
     // console.log("Loading comments:", comments);
 
