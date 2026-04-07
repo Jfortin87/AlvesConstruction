@@ -1,7 +1,4 @@
-// const express = require("express");
-// const cors = require("cors");
-// const db = require("./db");
-// require("dotenv").config();
+//!   -------     server/ server.js      -------
 
 //mt Import routes
 import express from "express";

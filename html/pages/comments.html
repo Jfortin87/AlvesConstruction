@@ -57,14 +57,26 @@
         <textarea id="comment" name="comment" minlength="10" placeholder="Enter your Comment:" required></textarea>
 
         <div class="jobRating_Cont">
-            <label class="test" for="jobRating">Rate your
+            <!-- <label class="test" for="jobRating">Rate your
                 Project:</label>
-            <input type="number" id="jobRating" name="jobRating" value="100" min="1" max="100" />
+
+            <input type="number" id="jobRating" name="jobRating" value="100" min="1" max="100" /> -->
+
+            <div class="star-rating" id="starRating">
+                <span data-value="20">★</span>
+                <span data-value="40">★</span>
+                <span data-value="60">★</span>
+                <span data-value="80">★</span>
+                <span data-value="100">★</span>
+            </div>
+
+            <input type="hidden" id="jobRating" value="100" required />
+
         </div>
 
         <label>
-            <input type="checkbox" id="isCustomer" />
             Customer ?
+            <input type="checkbox" id="isCustomer" />
         </label>
 
         <!--! <div class="prevCustomer_Cont">
@@ -81,7 +93,11 @@
 
             </div> -->
 
+        <button type="button" id="cancelEditBtn" style="display:none;">
+            Cancel Edit
+        </button>
         <button type="submit" title="Submit Form">Submit</button>
+
     </form>
 
     <!--!    Comments Bar    -->
@@ -97,7 +113,7 @@
         <div id="commentsContainer"></div>
 
         <!--!  ( OLD ) -->
-        <div class="commentsList_Cont">
+        <!-- <div class="commentsList_Cont">
 
             <section>
                 <h3>Jane Doe</h3>
@@ -140,7 +156,7 @@
                 <p>Not satisfied with the work.</p>
             </section>
 
-        </div>
+        </div> -->
     </div>
     </div>
 

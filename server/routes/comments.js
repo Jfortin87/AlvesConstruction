@@ -1,11 +1,7 @@
-//!     SERVER/ - routes/comments.js
+//!    --------   SERVER/routes/ comments.js    ----------
 //mt  Comments API routes
 
 //mt Imports
-// const express = require("express");
-// const { v4: uuidv4 } = require("uuid");
-// const sanitizeHtml = require("sanitize-html");
-// const db = require("../db");
 import express from "express";
 import { v4 as uuidv4 } from "uuid";
 import sanitizeHtml from "sanitize-html";
