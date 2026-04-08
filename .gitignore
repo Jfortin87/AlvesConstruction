@@ -10,6 +10,14 @@ yarn-error.log*
 .pnp.cjs
 .eslintcache
 
+#! Images (Large Files)
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
+image/
+
 #! Build artifacts
 dist/
 build/
