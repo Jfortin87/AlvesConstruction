@@ -12,7 +12,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/*mt      Company Name / Banner Phrase     */
+/*mt      Company Name / Banner Phrase    --(Mobile)-- */
 header h1 {
   /* border: 1px solid black; */
   font-size: 2rem;
@@ -26,6 +26,7 @@ header h1 {
   text-shadow: 1px 1px white;
 }
 
+/*st  Quote banner  */
 header p {
   /* border: 1px solid black; */
   width: 90%;
@@ -44,62 +45,30 @@ header p:hover {
   color: rgb(103, 153, 29);
 }
 
-/*mt   Picture Bar  (Mobile)    */
 
-.picBar_Cont {
-  display: grid;
-  grid-template-columns: auto;
-  /* border: 1px solid black; */
-  border-radius: 5px;
-  width: 95%;
-  height: 20rem;
-  background-color: white;
-  margin: 0 auto;
-  margin-bottom: 75px;
+/*mt        -- Auto Pic  - CARDS -        --(Mobile)--     */
 
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.picBarCont_titleCont {
-  /* border: 1px solid yellow; */
-  grid-column: span 2;
-  /* height: 2.5rem; */
-}
-
-.picBarCont_Title {
-  grid-column: span 2;
-  /* border: 1px solid green; */
-  height: 2rem;
-  text-align: center;
-  cursor: pointer;
-}
-
-.picBar_Cont section {
-  border: 1px solid black;
-  border-radius: 5px;
-  height: 100px;
-  margin: 10px;
-  margin-top: 5px;
-}
-
-
-
-/*@        -- Auto Pic  - CARDS -    (NEW WAY)      */
-
-/*    Card Container    */
+/*    Card Containers    */
 .autoPic_Cont {
   border: 1px solid black;
   border-radius: 5px;
   background-color: white;
   width: 95%;
   height: 20.6rem;
-
   margin: 0 auto;
   margin-bottom: 75px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-/*  Card Title */
+/*  Auto Pic Card Titles */
+.picBarCont_Title {
+  /* border: 1px solid green; */
+  height: 2rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+/*  Quick Pic Card Sub-Title */
 .job_Title {
   color: black;
   background-color: rgba(0, 0, 0, 0.219);
@@ -110,7 +79,7 @@ header p:hover {
   cursor: pointer;
 }
 
-
+/*  Show Image Cont */
 .showImage {
   /* border: 1px solid red; */
   border-bottom-left-radius: 5px;
@@ -125,7 +94,7 @@ header p:hover {
   transition: opacity 3s ease-in-out;
 }
 
-/*mt   Video Bar   */
+/*mt   Video Bar          --(Mobile)--  */
 
 .videoBar_Cont {
   border: 1px inset black;
@@ -140,7 +109,7 @@ header p:hover {
   /* height: 25rem; */
 }
 
-/*mt    Comments / Reviews / Link to Form   */
+/*mt    Comments / Reviews / Star Rating      --(Mobile)--*/
 
 .comments_Bar {
   /* border: 1px solid red; */
@@ -159,14 +128,46 @@ header p:hover {
   padding-bottom: 20px;
 }
 
+/*   Title    */
 .comments_Link h2 {
   text-align: center;
-  font-size: 20px;
+  font-size: 22px;
   font-family: cursive;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
+/*st     Star Rating/ Review total  */
+.starAverRate {
+  /* border: 1px solid black; */
+  /* width: 160px; */
+  /* color: gold; */
+  margin: 0 auto;
+  margin-bottom: 10px;
+  /* padding-left: 10px; */
+}
+
+.starAverRate h6 {
+  /* border: 1px solid green; */
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Avg Rating  */
+#avgRating {
+  /* border: 1px solid yellow; */
+  font-size: 22px;
+  margin-left: 55px;
+  color: goldenrod;
+}
+
+/* Review total count  */
+#commentCount {
+  font-size: 12px;
+  color: grey;
+}
+
+/*st  Review Link BTN */
 .comments_Link a {
   display: block;
   border-radius: 5px;
@@ -197,31 +198,31 @@ header p:hover {
   overflow: scroll;
 }
 
-.commentsList_Cont section {
-  /* border: 1px solid black; */
+/* .commentsList_Cont section {
+  border: 1px solid red;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.219);
   padding: 5px;
   font-family: cursive;
   margin-bottom: 10px;
-}
-
+} */
+/*
 .commentsList_Cont section:hover {
   background-color: rgb(65, 64, 64);
   color: greenyellow;
   transform: scale(1.05);
   transition: transform 0.5s ease;
-}
+} */
 
-.commentsList_Cont section p {
-  /* border: 1px solid black; */
+/* .commentsList_Cont section p {
+  border: 1px solid black;
   font-size: 10px;
   color: greenyellow;
-  /* margin-bottom: 5px; */
-}
+  margin-bottom: 5px;
+} */
 
-.commentsList_Cont section p:last-child {
-  /* border: 1px solid black; */
+/* .commentsList_Cont section p:last-child {
+  border: 1px solid black;
   border-radius: 5px;
   font-size: 14px;
   background-color: white;
@@ -229,7 +230,7 @@ header p:hover {
   margin-top: 20px;
   padding: 5px;
   text-align: center;
-}
+} */
 
 /*!  --------------  TABLET (Small) ---------------- */
 

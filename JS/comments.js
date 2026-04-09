@@ -109,7 +109,7 @@ async function loadComments() {
           style=
           "
           margin: 0 0 5px 0;
-          color: gold;
+          color: goldenrod;
 
           "
           >

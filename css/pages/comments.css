@@ -1,10 +1,11 @@
-/*mt    Comments / Reviews / Link to Form   */
+/*@    ---              ----- Mobile -----           ---    */
 
+/*mt  Customer Reviews Cont         -- Mobile -- */
 .comments_Bar {
-  /* border: 1px solid red; */
+  border: 1px solid rgb(12, 247, 4);
   background-color: white;
   width: 95%;
-  height: 30rem;
+  height: 70rem;
   padding-bottom: 10px;
   margin: 0 auto;
   margin-bottom: 75px;
@@ -12,67 +13,64 @@
   /* overflow: scroll; */
 }
 
-.comments_Link {
+/*st  Avg Rating Cont */
+.avgRate_Cont {
   /* border: 1px solid blue; */
   width: 90%;
   margin: 0 auto;
   padding-bottom: 20px;
 }
 
-.comments_Link h2 {
+/*  Title  */
+.avgRate_Cont h2 {
   text-align: center;
-  font-size: 20px;
+  font-size: 22px;
   font-family: cursive;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-/**   Comments Section Hover Effects   */
-
-.commentsList_Cont {
-  /* border: 1px solid orange; */
-  width: 98%;
-  height: 25rem;
-  padding: 5px;
+/*mt     Star Rating/ Review total  */
+/*st  Star Rating Cont */
+.starAverRate {
+  /* border: 1px solid black; */
+  /* width: 160px; */
+  /* color: gold; */
   margin: 0 auto;
-  margin-top: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 10px;
+  /* padding-left: 10px; */
+}
+
+/*  Sub-Title */
+.starAverRate h6 {
+  /* border: 1px solid green; */
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Avg Rating  */
+#avgRating {
+  /* border: 1px solid yellow; */
+  font-size: 22px;
+  margin-left: 55px;
+  color: goldenrod;
+}
+
+/* Review total count  */
+#commentCount {
+  font-size: 12px;
+  color: grey;
+}
+
+
+/*mt   Reviews  Cont        -- Mobile --   */
+.reviewsReturn_Cont {
+  border: 1px solid red;
+  height: 62rem;
+  padding: 2px;
   overflow: scroll;
 }
 
-.commentsList_Cont section {
-  /* border: 1px solid black; */
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.219);
-  padding: 5px;
-  font-family: cursive;
-  margin-bottom: 10px;
-}
-
-.commentsList_Cont section:hover {
-  background-color: rgb(65, 64, 64);
-  color: greenyellow;
-  transform: scale(1.03);
-  transition: transform 0.5s ease;
-}
-
-.commentsList_Cont section p {
-  /* border: 1px solid black; */
-  font-size: 10px;
-  color: greenyellow;
-  /* margin-bottom: 5px; */
-}
-
-.commentsList_Cont section p:last-child {
-  /* border: 1px solid black; */
-  border-radius: 5px;
-  font-size: 14px;
-  background-color: white;
-  color: black;
-  margin-top: 20px;
-  padding: 5px;
-  text-align: center;
-}
 
 
 /*!   For  Comments Edit ( comments.js ) */
@@ -94,16 +92,3 @@
   cursor: pointer;
 }
 
-
-/*!  Comments- Star Rating Styles */
-.comment-rating {
-  font-size: 1.2rem;
-  color: gold;
-}
-
-/*!  Average-    Star Rating */
-
-#avgRating {
-  font-size: 1.2rem;
-  color: gold;
-}
