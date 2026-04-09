@@ -10,7 +10,10 @@ This website showcases the services offered by Alves Construction, including res
 
 - Auto-typing banner for catchy slogans
 - Responsive design for Mobile, Tablet and Computers
-- Comment section for user feedback
+- Review section for user feedback
+- 5- Star Rating System.
+- Review/ Comments System.
+- Comments are date Stamped + have full edit/Delete Functions.
 - Background color wave effect
 - Logo with spin effect
 - Contact Form
@@ -30,7 +33,8 @@ This website showcases the services offered by Alves Construction, including res
 - JavaScript
 - Typed.js library (auto-typing effect)
 - Font Awesome
--
+- Express.js
+- Nodemon (DEV)
 
 ## Notes
 
@@ -49,8 +53,10 @@ This website showcases the services offered by Alves Construction, including res
 7. Tablet and Laptop responsiveness
 8. Link social media icons
 9. Form functionality
-10. Comments Section Functionality
+10. Comments Section Functionality (-Complete-)
 11.
+
+- Quick Pic Needs adjusting for the fade transition.
 
 # Todo's By Page:
 
@@ -62,24 +68,19 @@ This website showcases the services offered by Alves Construction, including res
 
 ### Pictures/ Video Page:
 
-style:
+Rebuilt:
 
-- blank
-
-Functionality:
-
-- A simple search bar to search for pictures by job address
+- Using Quick pic feature.
+- Videos attached near job Pics.
 
 ### Comments Page:
 
-style:
+Rebuilt:
 
-- remove rate experience (DONE)
--
-
-Functionality:
-
-- Date of message when posted
+- Review/ Comments system.
+- Messages are Date Formatted.
+- Is a Customer Badge.
+- 5- Star Rating System.
 
 ## Color Palette:
 

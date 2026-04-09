@@ -71,6 +71,7 @@ header p:hover {
   /* border: 1px solid green; */
   height: 2rem;
   text-align: center;
+  cursor: pointer;
 }
 
 .picBar_Cont section {
@@ -106,6 +107,7 @@ header p:hover {
   font-family: cursive;
   text-align: center;
   margin-top: 1px;
+  cursor: pointer;
 }
 
 
