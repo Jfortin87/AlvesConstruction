@@ -40,7 +40,10 @@ This website showcases the services offered by Alves Construction, including res
 
 # ERRORS:
 
-1. Below auto typing banner there is a blinking cursor
+1. Below auto typing banner there is a blinking cursor.
+2. Quick Pic needs adjusting for the fade transition.
+3. Review/ comments , words are not wrapping to the next line when they reach the end of the container.
+
 
 #### NEEDS / IMPROVEMENTs:
 
