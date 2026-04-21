@@ -8,7 +8,6 @@ const API_URL = "http://localhost:3000/api/comments";
 const stars = document.querySelectorAll("#starRating span");
 const ratingInput = document.getElementById("jobRating");
 
-
 //mt Helper function to render stars based on rating value (0-100)
 function renderStars(rating) {
     const totalStars = 5;
@@ -23,12 +22,9 @@ function renderStars(rating) {
     return starsHTML;
 }
 
-
-
 //mt (GET) Load comments (html/pages/comments.html, index.html)and display them
 // Handle form submission/ Load/ Display comments
 async function loadComments() {
-
     const res = await fetch(API_URL);
     const comments = await res.json();
 
@@ -39,7 +35,6 @@ async function loadComments() {
     if (countEl) {
         countEl.textContent = `(${comments.length})`;
     }
-
 
     //st Rating Star Average
     const avgEl = document.getElementById("avgRating");
@@ -52,10 +47,7 @@ async function loadComments() {
             const avg = total / comments.length;
             avg.classList = "comms-AverageStarRating";
 
-
-            avgEl.innerHTML =
-                ` ${renderStars(avg)} (${(avg / 20).toFixed(1)})`;
-
+            avgEl.innerHTML = ` ${renderStars(avg)} (${(avg / 20).toFixed(1)})`;
         } else {
             avgEl.innerHTML = "☆☆☆☆☆ (0.0)";
         }
@@ -68,7 +60,6 @@ async function loadComments() {
         document.getElementById("commentsContainer") || // RETURN- comments page
         document.getElementById("homeComments_Cont"); // RETURN- home page
 
-
     //mt If no container found, exit function
     if (!container) return;
 
@@ -78,10 +69,7 @@ async function loadComments() {
     const isHome = document.getElementById("homeComments_Cont") !== null;
 
     // If on homepage, show only first 10 comments, else show all
-    const displayComments = isHome
-        ? comments.slice(0, 10)
-        : comments;
-
+    const displayComments = isHome ? comments.slice(0, 10) : comments;
 
     //mt Create comment cards
     displayComments.forEach((c) => {
@@ -92,35 +80,87 @@ async function loadComments() {
         div.classList.add("comment-card");
 
         div.innerHTML = `
-          <h3>${c.name}</h3>
-          <p>${c.comment}</p>
+          <div style=
+          "
+          border: 1px solid #1e1e1e;
+          border-radius: 5px;
+          background: #1e1e1e;
+          color: white;
+          margin-bottom: 10px;
+          padding: 3px;
+          ">
 
-          <div class="comment-rating">
-          ${renderStars(c.rating)} (${c.rating})
+          <h3 style=
+          "
+          padding-bottom: 5px;
+          font-family: cursive;
+          ">${c.name}</h3>
 
-            ${c.isCustomer ? "✔️ Customer" : "❌ Not a customer"}
+          <p style=
+          "
+          padding-bottom: 20px;
+          font-family: arial;
+          font-size: 14px;
+          ">
+          ${c.comment}
+          </p>
+
+          <div class="comment-rating"
+          style=
+          "
+          margin: 0 0 5px 0;
+          color: goldenrod;
+
+          "
+          >
+          ${renderStars(c.rating)} (${c.rating})<br />
+
+            ${c.isCustomer ? "✔️ Customer" : "❌ Customer"}
           </div>
 
-          <small>${new Date(c.createdAt).toLocaleString()}</small>
+          <small style=
+          "
+          color: #585858;
+          font-size: 10px;
+          "
+          >${new Date(c.createdAt).toLocaleString()}</small>
+
+          </div>
 
           ${token && !isHome
                 ? `
             <div class="comment-actions">
-              <button onclick="startEdit('${c.id}', '${c.name}', \`${c.comment}\`, ${c.rating}, ${c.isCustomer})">Edit</button>
-              <button onclick="deleteComment('${c.id}')">Delete</button>
+
+              <button onclick="startEdit('${c.id}', '${c.name}', \`${c.comment}\`, ${c.rating}, ${c.isCustomer})"
+            style=
+            "
+            border: 1px solid #139b01;
+            border-radius: 5px;
+            background: #707070;
+            color: #139b01;
+            "
+              >Edit</button>
+
+              <button onclick="deleteComment('${c.id}')"
+              style=
+              "
+              border: 1px solid #720202;
+              border-radius: 5px;
+              background: #707070;
+              color: #720202;
+              "
+              >Delete</button>
+
             </div>
           `
                 : ""
             }
 
-          <hr/>
         `;
 
         container.appendChild(div);
     });
 }
-
-
 
 // //mt SUBMIT FORM (POST)
 const form = document.getElementById("commentsForm");
@@ -141,7 +181,7 @@ if (form) {
         const data = {
             comment: document.getElementById("comment").value,
             rating: Number(document.getElementById("jobRating").value),
-            isCustomer: document.getElementById("isCustomer").checked
+            isCustomer: document.getElementById("isCustomer").checked,
         };
 
         let res;
@@ -153,33 +193,30 @@ if (form) {
             res = await fetch(`${API_URL}/${editingId}`, {
                 method: "PUT",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     ...data,
-                    editToken: token
-                })
+                    editToken: token,
+                }),
             });
 
             editingId = null;
-
         } else {
             // For new comments, we also need to include the name
             const fullData = {
                 name: document.getElementById("name").value,
-                ...data
+                ...data,
             };
-
 
             res = await fetch(API_URL, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify(fullData)
+                body: JSON.stringify(fullData),
             });
         }
-
 
         const result = await res.json();
 
@@ -203,10 +240,8 @@ if (form) {
                 ratingInput.value = 100;
             }
 
-
             editingId = null;
             loadComments();
-
         } else {
             alert(result.error);
         }
@@ -227,14 +262,15 @@ function startEdit(id, name, comment, rating, isCustomer) {
     document.getElementById("cancelEditBtn").style.display = "inline-block";
 
     // Change submit button text to "Update Comment"
-    document.querySelector("#commentsForm button[type='submit']").textContent = "Update Comment";
+    document.querySelector("#commentsForm button[type='submit']").textContent =
+        "Update Comment";
 
     // ⭐ update stars visually (SAFE)
     if (stars.length) {
-        stars.forEach(s => {
+        stars.forEach((s) => {
             s.classList.toggle(
                 "active",
-                Number(s.getAttribute("data-value")) <= rating
+                Number(s.getAttribute("data-value")) <= rating,
             );
         });
     }
@@ -253,7 +289,7 @@ if (cancelBtn) {
 
         // reset stars 100% filled
         if (stars.length) {
-            stars.forEach(s => s.classList.add("active"));
+            stars.forEach((s) => s.classList.add("active"));
         }
 
         // reset rating
@@ -263,14 +299,13 @@ if (cancelBtn) {
         }
 
         // Change submit button text back to "Submit"
-        document.querySelector("#commentsForm button[type='submit']").textContent = "Submit";
-
+        document.querySelector("#commentsForm button[type='submit']").textContent =
+            "Submit";
 
         // hide cancel button
         cancelBtn.style.display = "none";
     });
 }
-
 
 //mt DELETE
 window.deleteComment = async (id) => {
@@ -279,9 +314,9 @@ window.deleteComment = async (id) => {
     const res = await fetch(`${API_URL}/${id}`, {
         method: "DELETE",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify({ editToken: token })
+        body: JSON.stringify({ editToken: token }),
     });
 
     const result = await res.json();
@@ -291,15 +326,12 @@ window.deleteComment = async (id) => {
     } else {
         alert(result.error);
     }
-}
-
-
+};
 
 //mt ⭐ STAR RATING LOGIC
 //st ONLY run if BOTH exist (this fixes homepage crash)
 if (stars.length && ratingInput) {
-
-    stars.forEach(star => {
+    stars.forEach((star) => {
         star.addEventListener("click", () => {
             const value = Number(star.getAttribute("data-value"));
 
@@ -307,10 +339,10 @@ if (stars.length && ratingInput) {
             ratingInput.value = value;
 
             // highlight stars
-            stars.forEach(s => {
+            stars.forEach((s) => {
                 s.classList.toggle(
                     "active",
-                    Number(s.getAttribute("data-value")) <= value
+                    Number(s.getAttribute("data-value")) <= value,
                 );
             });
         });
@@ -320,15 +352,14 @@ if (stars.length && ratingInput) {
     if (ratingInput.value) {
         const value = Number(ratingInput.value);
 
-        stars.forEach(s => {
+        stars.forEach((s) => {
             s.classList.toggle(
                 "active",
-                Number(s.getAttribute("data-value")) <= value
+                Number(s.getAttribute("data-value")) <= value,
             );
         });
     }
 }
-
 
 //mt LOAD
 loadComments();
