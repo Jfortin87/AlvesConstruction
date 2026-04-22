@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/dashboard/payTracker.css">
+
+
+    <title>Pay Tracker</title>
+</head>
+
+<body>
+    <main class="payTrackerPage">
+        <h1>Pay Tracker</h1>
+
+        <p id="payTrackerStatus">Checking admin access...</p>
+
+        <section id="payTrackerContent" style="display: none;">
+            <div class="payTrackerToolbar">
+                <button id="backToAdminBtn">Back to Admin Dashboard</button>
+            </div>
+
+            <section class="createTableSection">
+                <h2>Create Pay Table</h2>
+
+                <form id="createTableForm">
+                    <label for="tableName">Table Name</label>
+                    <input type="text" id="tableName" name="tableName" placeholder="Enter table name" required />
+
+                    <button type="submit">Create Table</button>
+                </form>
+            </section>
+
+            <section class="tablesSection">
+                <h2>Pay Tables</h2>
+                <div id="tablesContainer"></div>
+            </section>
+        </section>
+    </main>
+
+    <script src="/JS/payTracker.js"></script>
+
+</body>
+
+</html>

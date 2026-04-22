@@ -7,6 +7,8 @@ import dotenv from "dotenv";
 import session from "express-session";
 import isAdmin from "./middleware/isAdmin.js";
 
+
+
 // DB Table Model
 import db from "./db.js";
 
@@ -18,6 +20,9 @@ dotenv.config();
 //!       -- Import routes --
 import commentRoutes from "./routes/comments.js";
 import authRoutes from "./routes/auth.js";
+
+//mt Pay Tracker routes
+import payTrackerRoutes from "./routes/payTracker.js";
 
 //mt Initialize Express app
 const app = express();
@@ -50,6 +55,7 @@ app.use(express.urlencoded({ extended: true }));
 //!       -- Use routes --
 app.use("/api/comments", commentRoutes); // Comment routes (CRUD operations)
 app.use("/auth", authRoutes); // Admin login route
+app.use("/api/pay-tracker", payTrackerRoutes); // Pay Tracker routes (CRUD operations)
 
 
 //!       -- Test Routes --

@@ -1,0 +1,201 @@
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.payTrackerPage {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+#payTrackerStatus {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.payTrackerToolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+    padding: 15px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+}
+
+.payTrackerToolbar button,
+#createTableForm button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.createTableSection,
+.tablesSection {
+    margin-top: 20px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+#createTableForm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+#createTableForm label {
+    font-weight: bold;
+}
+
+#createTableForm input {
+    flex: 1 1 250px;
+    min-width: 220px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.payTableWrapper {
+    margin-top: 20px;
+    background: #fafafa;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.payTableHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.payTableHeader h3 {
+    margin: 0;
+}
+
+.addRowBtn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.tableScroll {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.payTable {
+    width: 100%;
+    min-width: 1100px;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.payTable th,
+.payTable td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.payTable th {
+    background: #f0f0f0;
+}
+
+.payTable input,
+.payTable select,
+.payTable textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+}
+
+.dayBoxesRow {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 6px;
+    min-width: 420px;
+}
+
+.dayBox {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #999;
+    border-radius: 6px;
+    background: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    user-select: none;
+}
+
+.boxLabel {
+    font-size: 0.75rem;
+    color: #555;
+}
+
+.dayBox.halfDay {
+    background: linear-gradient(to right, #4caf50 50%, #ffffff 50%);
+}
+
+.dayBox.fullDay {
+    background: #4caf50;
+    color: #ffffff;
+}
+
+.dayBox.fullDay .boxLabel {
+    color: #ffffff;
+}
+
+.totalDays,
+.cashTotal {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 12px;
+    }
+
+    .createTableSection,
+    .tablesSection,
+    .payTableWrapper {
+        padding: 15px;
+    }
+
+    .dayBoxesRow {
+        grid-template-columns: repeat(5, 1fr);
+        min-width: 220px;
+    }
+
+    .dayBox {
+        width: 34px;
+        height: 34px;
+    }
+}

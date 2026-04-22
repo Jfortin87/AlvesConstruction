@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from "uuid";
 import sanitizeHtml from "sanitize-html";
 import db from "../db.js";
 
+import isAdmin from "../middleware/isAdmin.js";
+
 //mt Create router
 const router = express.Router();
 
@@ -111,6 +113,56 @@ router.post("/", (req, res) => {
     });
 });
 
+
+
+//!         ------ PUT /UPDATE ROUTES ------
+
+//mt     ADMIN UPDATE (no token, just admin check)
+
+// localhost:3000/api/comments/admin/:id
+router.put("/admin/:id", isAdmin, (req, res) => {
+    try {
+        const { id } = req.params;
+        let { comment, rating, isCustomer } = req.body;
+
+        if (!comment || rating === undefined || isCustomer === undefined) {
+            return res.status(400).json({ error: "All fields required" });
+        }
+
+        if (rating < 1 || rating > 100) {
+            return res.status(400).json({ error: "Rating must be 1-100" });
+        }
+
+        comment = sanitizeHtml(comment.trim());
+
+        const existing = db.prepare("SELECT * FROM comments WHERE id = ?").get(id);
+
+        if (!existing) {
+            return res.status(404).json({ error: "Comment not found" });
+        }
+
+        const updatedAt = new Date().toISOString();
+
+        db.prepare(`
+            UPDATE comments
+            SET comment = ?, rating = ?, isCustomer = ?, updatedAt = ?
+            WHERE id = ?
+        `).run(
+            comment,
+            rating,
+            isCustomer ? 1 : 0,
+            updatedAt,
+            id
+        );
+
+        res.json({ message: "Admin updated comment successfully" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
+
 //mt PUT/ UPDATE    (-- PUT -- Validate, sanitize, check token, 24h rule, update in DB)
 // localhost:3000/api/comments/:id
 router.put("/:id", (req, res) => {
@@ -174,7 +226,32 @@ router.put("/:id", (req, res) => {
 
 
 
+
+//!         ------ DELETE ROUTES ------
+//mt     ADMIN DELETE (no token, just admin check)
+
+// localhost:3000/api/comments/admin/:id
+router.delete("/admin/:id", isAdmin, (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const existing = db.prepare("SELECT * FROM comments WHERE id = ?").get(id);
+
+        if (!existing) {
+            return res.status(404).json({ error: "Comment not found" });
+        }
+
+        db.prepare("DELETE FROM comments WHERE id = ?").run(id);
+
+        res.json({ message: "Admin deleted comment successfully" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
+    }
+});
+
 //mt DELETE/ REMOVE    (-- DELETE -- Check token, delete from DB)
+
 // localhost:3000/api/comments/:id
 router.delete("/:id", (req, res) => {
     try {
@@ -204,6 +281,56 @@ router.delete("/:id", (req, res) => {
         res.status(500).json({ error: "Server error" });
     }
 });
+
+//!        ------ ADMIN STATS ROUTE ------
+//mt  Admin Stats Route (no token, just admin check)
+
+// localhost:3000/api/comments/admin/stats
+router.get("/admin/stats", isAdmin, (req, res) => {
+    try {
+        const totalComments = db.prepare(`
+            SELECT COUNT(*) AS total
+            FROM comments
+        `).get();
+
+        const averageRating = db.prepare(`
+            SELECT ROUND(AVG(rating), 1) AS avg
+            FROM comments
+        `).get();
+
+        const customerCount = db.prepare(`
+            SELECT COUNT(*) AS total
+            FROM comments
+            WHERE isCustomer = 1
+        `).get();
+
+        const nonCustomerCount = db.prepare(`
+            SELECT COUNT(*) AS total
+            FROM comments
+            WHERE isCustomer = 0
+        `).get();
+
+        const latestComment = db.prepare(`
+            SELECT createdAt
+            FROM comments
+            ORDER BY createdAt DESC
+            LIMIT 1
+        `).get();
+
+        res.json({
+            totalComments: totalComments.total,
+            averageRating: averageRating.avg || 0,
+            customers: customerCount.total,
+            nonCustomers: nonCustomerCount.total,
+            latestComment: latestComment?.createdAt || null
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to load stats" });
+    }
+});
+
 
 //mt Export router
 export default router;
