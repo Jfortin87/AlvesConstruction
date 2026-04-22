@@ -20,6 +20,31 @@ db.prepare(`
   )
 `).run();
 
+// =============================
+//mt PAY TABLES (TABLE)
+// =============================
+db.prepare(`
+  CREATE TABLE IF NOT EXISTS pay_tables (
+    id TEXT PRIMARY KEY,
+    tableName TEXT NOT NULL,
+    createdAt TEXT NOT NULL
+  )
+`).run();
+
+db.prepare(`
+  CREATE TABLE IF NOT EXISTS pay_table_rows (
+    id TEXT PRIMARY KEY,
+    tableId TEXT NOT NULL,
+    workerName TEXT,
+    dailyPay REAL DEFAULT 0,
+    dayValues TEXT DEFAULT '[]',
+    totalDays REAL DEFAULT 0,
+    cashTotal REAL DEFAULT 0,
+    createdAt TEXT NOT NULL
+  )
+`).run();
+
+
 
 //mt Export database
 export default db;

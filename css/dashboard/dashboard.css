@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+#adminContent {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.adminToolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 15px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.adminToolbar button {
+    min-width: 160px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.statsBanner {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    margin: 20px auto;
+}
+
+.statCard {
+    flex: 1 1 180px;
+    max-width: 220px;
+    min-width: 180px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.statCard h3 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+}
+
+.statCard p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.commentsSection {
+    margin-top: 20px;
+}
