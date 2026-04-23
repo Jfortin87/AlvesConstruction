@@ -199,3 +199,69 @@ body {
         height: 34px;
     }
 }
+
+.paidRow {
+    background: #e0e0e0;
+}
+
+.paidRow td,
+.paidRow input,
+.paidRow label,
+.paidRow span,
+.paidRow button {
+    color: #666;
+    text-decoration: line-through;
+}
+
+.paidRow input[readonly] {
+    background: #d6d6d6;
+    cursor: not-allowed;
+}
+
+.paidRow button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+
+.payTrackerStatsSection {
+    margin-top: 20px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+#payTrackerStatsBar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.trackerStatRow {
+    flex: 1 1 280px;
+    max-width: 360px;
+    min-width: 260px;
+    background: #fafafa;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+}
+
+.trackerStatRow p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+}
+
+.trackerStatGrandTotal {
+    background: #f0f0f0;
+    border: 2px solid #999;
+}
+
+.trackerStatGrandTotal p {
+    font-weight: bold;
+}
