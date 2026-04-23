@@ -112,6 +112,7 @@ router.post("/tables/:tableId/rows", isAdmin, (req, res) => {
     }
 });
 
+
 //mt  UPDATE all rows for a table (full replace)
 router.put("/tables/:tableId/rows", isAdmin, (req, res) => {
     try {
@@ -138,9 +139,11 @@ router.put("/tables/:tableId/rows", isAdmin, (req, res) => {
                 dayValues,
                 totalDays,
                 cashTotal,
+                isPaid,
+                paidAmount,
                 createdAt
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `);
 
         for (const row of rows) {
@@ -152,6 +155,8 @@ router.put("/tables/:tableId/rows", isAdmin, (req, res) => {
                 JSON.stringify(row.dayValues || []),
                 Number(row.totalDays) || 0,
                 Number(row.cashTotal) || 0,
+                row.isPaid ? 1 : 0,
+                Number(row.paidAmount) || 0,
                 new Date().toISOString()
             );
         }

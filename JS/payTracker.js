@@ -5,6 +5,8 @@ const createTableForm = document.getElementById("createTableForm");
 const tableNameInput = document.getElementById("tableName");
 const tablesContainer = document.getElementById("tablesContainer");
 
+const payTrackerStatsBar = document.getElementById("payTrackerStatsBar");
+
 async function checkPayTrackerAccess() {
     try {
         const res = await fetch("http://127.0.0.1:3000/check-user", {
@@ -77,16 +79,30 @@ function createStarterRows() {
 
 //mt  - updateTablePayrollTotal -: Calculate and update the total payout for a given table based on its cash total cells
 function updateTablePayrollTotal(tableWrapper) {
-    const cashTotalCells = tableWrapper.querySelectorAll(".cashTotal");
+    const rows = tableWrapper.querySelectorAll("tbody tr");
+
     const totalValueEl = tableWrapper.querySelector(".tableTotalValue");
+    const remainingValueEl = tableWrapper.querySelector(".tableRemainingValue");
 
     let totalPayout = 0;
+    let totalRemaining = 0;
 
-    cashTotalCells.forEach(cell => {
-        totalPayout += Number(cell.textContent) || 0;
+    rows.forEach(row => {
+        const cashTotal = Number(row.querySelector(".cashTotal")?.textContent) || 0;
+        const paidAmount = Number(row.querySelector(".paidAmount")?.value) || 0;
+        const isPaid = row.querySelector(".isPaid")?.checked || false;
+
+        totalPayout += cashTotal;
+
+        if (!isPaid) {
+            totalRemaining += (cashTotal - paidAmount);
+        }
     });
 
     totalValueEl.textContent = totalPayout.toFixed(2);
+    remainingValueEl.textContent = totalRemaining.toFixed(2);
+
+    updatePayTrackerStatsBar();
 }
 
 //mt - formatCreatedDate -: Format a date string into a more readable format for display in the UI
@@ -102,6 +118,45 @@ function formatCreatedDate(dateString) {
     });
 }
 
+//mt - updatePayTrackerStatsBar -: Update the stats bar at the top of the pay tracker with totals from all tables
+function updatePayTrackerStatsBar() {
+    const tableWrappers = document.querySelectorAll(".payTableWrapper");
+
+    if (!tableWrappers.length) {
+        payTrackerStatsBar.innerHTML = "<p>No pay tables yet.</p>";
+        return;
+    }
+
+    let allTablesPayout = 0;
+    let allTablesRemaining = 0;
+    let statsHTML = "";
+
+    tableWrappers.forEach((tableWrapper, index) => {
+        const tableName = tableWrapper.querySelector(".payTableTitleArea h3")?.textContent || `Table ${index + 1}`;
+        const tableTotal = Number(tableWrapper.querySelector(".tableTotalValue")?.textContent) || 0;
+        const tableRemaining = Number(tableWrapper.querySelector(".tableRemainingValue")?.textContent) || 0;
+
+        allTablesPayout += tableTotal;
+        allTablesRemaining += tableRemaining;
+
+        statsHTML += `
+            <div class="trackerStatRow">
+                <p><strong>${tableName}</strong> - Workers Total Payout: $${tableTotal.toFixed(2)}</p>
+                <p><strong>${tableName}</strong> - Remaining Balance: $${tableRemaining.toFixed(2)}</p>
+            </div>
+        `;
+    });
+
+    statsHTML += `
+        <div class="trackerStatRow trackerStatGrandTotal">
+            <p><strong>Total Payout (All Tables):</strong> $${allTablesPayout.toFixed(2)}</p>
+            <p><strong>Total Remaining Balance (All Tables):</strong> $${allTablesRemaining.toFixed(2)}</p>
+        </div>
+    `;
+
+    payTrackerStatsBar.innerHTML = statsHTML;
+}
+
 //mt Create a pay table element based on the provided table data
 async function createPayTable(table) {
     const tableWrapper = document.createElement("div");
@@ -113,11 +168,15 @@ async function createPayTable(table) {
     <div class="payTableTitleArea">
         <h3>${table.tableName}</h3>
         <p class="tablePayrollTotal">
-            Workers Payout: $<span class="tableTotalValue">0.00</span>
+            Workers Total Payout: $<span class="tableTotalValue">0.00</span>
+        </p>
+
+        <p class="tableRemainingBalance">
+        Remaining Balance: $<span class="tableRemainingValue">0.00</span>
         </p>
 
         <p class="tableCreatedDate">
-        Created: ${formatCreatedDate(table.createdAt)}
+        Job Started: ${formatCreatedDate(table.createdAt)}
     </p>
     </div>
 
@@ -138,9 +197,9 @@ async function createPayTable(table) {
                         <th>Days</th>
                         <th>Total (Days)</th>
                         <th>Cash Total</th>
+                        <th>Paid</th>
+                        <th>Owe</th>
                         <th>Actions</th>
-
-
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -179,7 +238,18 @@ async function createPayTable(table) {
                         <td class="totalDays">0</td>
                         <td class="cashTotal">0.00</td>
                         <td>
-                        <button type="button" class="deleteRowBtn" onclick="deletePayRow(this)">Delete Row</button>
+                            <input type="number" class="paidAmount" placeholder="Paid amount" min="0" step="0.01" value="0">
+                        </td>
+
+                        <td class="oweAmount">0.00</td>
+
+                        <td>
+                            <label>
+                                <input type="checkbox" class="isPaid">
+                                Paid
+                            </label>
+                            <br><br>
+                            <button type="button" class="deleteRowBtn" onclick="deletePayRow(this)">Delete Row</button>
                         </td>
                     `;
                     tbody.appendChild(newRow);
@@ -225,11 +295,29 @@ async function createPayTable(table) {
                     <td class="totalDays">${row.totalDays || 0}</td>
                     <td class="cashTotal">${Number(row.cashTotal || 0).toFixed(2)}</td>
                     <td>
+                    <input type="number" class="paidAmount" placeholder="Paid amount" min="0" step="0.01" value="${row.paidAmount || 0}" ${row.isPaid ? "readonly" : ""}>
+                    </td>
+
+                    <td class="oweAmount">${(Number(row.cashTotal || 0) - Number(row.paidAmount || 0)).toFixed(2)}</td>
+
+                    <td>
+                        <label>
+                            <input type="checkbox" class="isPaid" ${row.isPaid ? "checked" : ""}>
+                            Paid
+                        </label>
+                        <br><br>
                         <button type="button" class="deleteRowBtn" onclick="deletePayRow(this)">Delete Row</button>
-                        </td>
+                    </td>
                 `;
 
                 tbody.appendChild(newRow);
+
+                const isPaidCheckbox = newRow.querySelector(".isPaid");
+                if (isPaidCheckbox?.checked) {
+                    newRow.classList.add("paidRow");
+                    setRowLocked(newRow, true);
+                }
+
             });
             updateTablePayrollTotal(tableWrapper);
 
@@ -239,7 +327,9 @@ async function createPayTable(table) {
     }
 
     addRowBtn.addEventListener("click", () => {
+
         const newRow = document.createElement("tr");
+
         newRow.innerHTML = `
             <td><input type="text" class="workerName" placeholder="Worker name"></td>
             <td><input type="number" class="dailyPay" placeholder="Daily pay" min="0" step="0.01"></td>
@@ -251,8 +341,19 @@ async function createPayTable(table) {
             <td class="totalDays">0</td>
             <td class="cashTotal">0.00</td>
             <td>
-                        <button type="button" class="deleteRowBtn" onclick="deletePayRow(this)">Delete Row</button>
-                        </td>
+                <input type="number" class="paidAmount" placeholder="Paid amount" min="0" step="0.01" value="0">
+            </td>
+
+            <td class="oweAmount">0.00</td>
+
+            <td>
+                <label>
+                    <input type="checkbox" class="isPaid">
+                    Paid
+                </label>
+                <br><br>
+                <button type="button" class="deleteRowBtn" onclick="deletePayRow(this)">Delete Row</button>
+            </td>
         `;
 
         tbody.appendChild(newRow);
@@ -267,6 +368,8 @@ async function createPayTable(table) {
                 const dailyPay = Number(row.querySelector(".dailyPay")?.value) || 0;
                 const totalDays = Number(row.querySelector(".totalDays")?.textContent) || 0;
                 const cashTotal = Number(row.querySelector(".cashTotal")?.textContent) || 0;
+                const paidAmount = Number(row.querySelector(".paidAmount")?.value) || 0;
+                const isPaid = row.querySelector(".isPaid")?.checked || false;
 
                 const dayBoxes = row.querySelectorAll(".dayBox");
                 const dayValues = Array.from(dayBoxes).map(box => Number(box.dataset.value || 0));
@@ -276,7 +379,9 @@ async function createPayTable(table) {
                     dailyPay,
                     dayValues,
                     totalDays,
-                    cashTotal
+                    cashTotal,
+                    paidAmount,
+                    isPaid
                 };
             });
 
@@ -333,6 +438,8 @@ async function createPayTable(table) {
     await loadRows();
 }
 
+
+//mt - toggleDayBox -: Handle clicks on day boxes to cycle through 0, 0.5, and 1 values, and update the row totals accordingly
 function toggleDayBox(box) {
     const currentValue = Number(box.dataset.value);
 
@@ -352,13 +459,42 @@ function toggleDayBox(box) {
     updateRowTotals(box);
 }
 
+//mt - setRowLocked -: Enable or disable input fields and buttons in a given row based on the locked parameter, while keeping the Paid checkbox usable
+function setRowLocked(row, locked) {
+    const textInputs = row.querySelectorAll("input[type='text'], input[type='number']");
+    const checkboxes = row.querySelectorAll(".isPaid");
+    const buttons = row.querySelectorAll(".deleteRowBtn");
+
+    textInputs.forEach(input => {
+        input.readOnly = locked;
+    });
+
+    checkboxes.forEach(box => {
+        box.disabled = false; // keep Paid checkbox usable
+    });
+
+    buttons.forEach(button => {
+        button.disabled = locked;
+    });
+
+    const dayBoxes = row.querySelectorAll(".dayBox");
+
+    dayBoxes.forEach(box => {
+        box.style.pointerEvents = locked ? "none" : "auto";
+        box.style.opacity = locked ? "0.6" : "1";
+    });
+}
+
 //mt - updateRowTotals -: Calculate and update the total days and cash total for a given row based on its day boxes and daily pay input
 function updateRowTotals(box) {
     const row = box.closest("tr");
     const allBoxes = row.querySelectorAll(".dayBox");
     const dailyPayInput = row.querySelector(".dailyPay");
+    const paidAmountInput = row.querySelector(".paidAmount");
+    const isPaidCheckbox = row.querySelector(".isPaid");
     const totalDaysCell = row.querySelector(".totalDays");
     const cashTotalCell = row.querySelector(".cashTotal");
+    const oweAmountCell = row.querySelector(".oweAmount");
 
     let totalDays = 0;
 
@@ -367,10 +503,23 @@ function updateRowTotals(box) {
     });
 
     const dailyPay = Number(dailyPayInput.value) || 0;
+    const paidAmount = Number(paidAmountInput?.value) || 0;
+    const isPaid = isPaidCheckbox?.checked || false;
+
     const cashTotal = totalDays * dailyPay;
+    const oweAmount = isPaid ? 0 : (cashTotal - paidAmount);
 
     totalDaysCell.textContent = totalDays;
     cashTotalCell.textContent = cashTotal.toFixed(2);
+    oweAmountCell.textContent = oweAmount.toFixed(2);
+
+    if (isPaid) {
+        row.classList.add("paidRow");
+        setRowLocked(row, true);
+    } else {
+        row.classList.remove("paidRow");
+        setRowLocked(row, false);
+    }
 
     const tableWrapper = row.closest(".payTableWrapper");
     if (tableWrapper) {
@@ -401,6 +550,8 @@ async function loadSavedTables() {
             await createPayTable(table);
         }
 
+        updatePayTrackerStatsBar();
+
     } catch (error) {
         console.error("LOAD SAVED TABLES ERROR:", error);
     }
@@ -422,8 +573,44 @@ backToAdminBtn.addEventListener("click", () => {
     window.location.href = "/html/dashboard/dashboard.html";
 });
 
+
+document.addEventListener("change", (e) => {
+    if (e.target.classList.contains("isPaid")) {
+        const row = e.target.closest("tr");
+        const firstBox = row.querySelector(".dayBox");
+        const paidAmountInput = row.querySelector(".paidAmount");
+        const cashTotalCell = row.querySelector(".cashTotal");
+
+        if (!row || !firstBox || !paidAmountInput || !cashTotalCell) return;
+
+        const isChecked = e.target.checked;
+        const cashTotal = Number(cashTotalCell.textContent) || 0;
+
+        if (isChecked) {
+            paidAmountInput.value = cashTotal.toFixed(2);
+            paidAmountInput.readOnly = true;
+        } else {
+            paidAmountInput.readOnly = false;
+        }
+
+        updateRowTotals(firstBox);
+    }
+});
+
+
 document.addEventListener("input", (e) => {
     if (e.target.classList.contains("dailyPay")) {
+        const row = e.target.closest("tr");
+        const firstBox = row.querySelector(".dayBox");
+
+        if (firstBox) {
+            updateRowTotals(firstBox);
+        }
+    }
+});
+
+document.addEventListener("input", (e) => {
+    if (e.target.classList.contains("paidAmount")) {
         const row = e.target.closest("tr");
         const firstBox = row.querySelector(".dayBox");
 
