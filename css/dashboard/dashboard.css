@@ -1,11 +1,62 @@
-body {
+* {
     margin: 0;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/*mt     --  Body  --    */
+body {
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+}
+
+/*mt     --  Header  --    */
+.dashboardHeader_Cont {
+    /* border: 1px solid red; */
+    background-color: black;
+    color: #ffffff;
+    padding: 2px;
+
+}
+
+/*st  Logout Btn  */
+.logoutBtn_Cont {
+    /* border: 1px solid green; */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#logoutBtn {
+    border: 1px solid red;
+    border-radius: 3px;
+    color: red;
+    background: transparent;
+    padding: 5px 10px;
+}
+
+#logoutBtn:hover {
+    background: red;
+    color: white;
+    transition: 0.3s;
+}
+
+/*st   Welcome Banner   */
+.welcomeBanner_Cont {
+    /* border: 1px solid blue; */
+    height: 50px;
+}
+
+#adminStatus {
+    margin-top: 5px;
+    font-size: 14px;
+    color: gray;
+}
+
+
+/*mt     --  Dashboard Features  --    */
 #adminContent {
+    border: 1px solid red;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -16,13 +67,12 @@ body {
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
-    width: 100%;
+    width: 98%;
     margin: 20px auto;
     padding: 15px;
     background: #ffffff;
-    border: 1px solid #ccc;
+    border: 1px solid #a0a0a0;
     border-radius: 12px;
-    box-sizing: border-box;
 }
 
 .adminToolbar button {
@@ -69,4 +119,33 @@ body {
 
 .commentsSection {
     margin-top: 20px;
+}
+
+/*!  --------------  TABLET (Small) ---------------- */
+
+@media screen and (max-width: 649px) and (min-width: 450px) {
+    body {
+        background: lightcoral;
+    }
+}
+
+/*!    --------------  TABLET (Large ---------------- */
+@media screen and (max-width: 849px) and (min-width: 650px) {
+    body {
+        background: teal;
+    }
+}
+
+/*!   --------------  LAPTOP (Small)---------------- */
+@media screen and (max-width: 1299px) and (min-width: 850px) {
+    body {
+        background: orange;
+    }
+}
+
+/*!   --------------  LAPTOP (Large)---------------- */
+@media screen and (min-width: 1300px) {
+    body {
+        background: lightblue;
+    }
 }

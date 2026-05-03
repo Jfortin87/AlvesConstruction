@@ -15,7 +15,7 @@ const payTrackerBtn = document.getElementById("payTrackerBtn");
 //mt   Check Admin Access (no token, just check if user is admin on backend)
 async function checkAdminAccess() {
     try {
-        const res = await fetch("http://127.0.0.1:3000/check-user", {
+        const res = await fetch("http://localhost:3000/check-user", {
             method: "GET",
             credentials: "include"
         });
@@ -46,12 +46,12 @@ async function checkAdminAccess() {
 async function loadComments() {
     if (commentsContainer.innerHTML.trim() !== "") {
         commentsContainer.innerHTML = "";
-        loadCommentsBtn.textContent = "Load Comments";
+        loadCommentsBtn.textContent = "Show Comments";
         return;
     }
 
     try {
-        const res = await fetch("http://127.0.0.1:3000/api/comments", {
+        const res = await fetch("http://localhost:3000/api/comments", {
             method: "GET",
             credentials: "include"
         });
@@ -72,7 +72,8 @@ async function loadComments() {
                 <p><strong>Comment:</strong> ${comment.comment}</p>
                 <p><strong>Rating:</strong> ${comment.rating}</p>
                 <p><strong>Customer:</strong> ${comment.isCustomer ? "Yes" : "No"}</p>
-                <p><strong>Date:</strong> ${comment.createdAt || "No date"}</p>
+
+                <p><strong>Date:</strong> ${formatDashboardDate(comment.createdAt)}</p>
 
                 <button onclick="toggleEditForm('${comment.id}')">Edit</button>
                 <button onclick="deleteComment('${comment.id}')">Delete</button>
@@ -137,7 +138,7 @@ async function saveCommentEdit(id) {
     }
 
     try {
-        const res = await fetch(`http://127.0.0.1:3000/api/comments/admin/${id}`, {
+        const res = await fetch(`http://localhost:3000/api/comments/admin/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -173,7 +174,7 @@ async function deleteComment(id) {
     if (!confirmed) return;
 
     try {
-        const res = await fetch(`http://127.0.0.1:3000/api/comments/admin/${id}`, {
+        const res = await fetch(`http://localhost:3000/api/comments/admin/${id}`, {
             method: "DELETE",
             credentials: "include"
         });
@@ -203,7 +204,7 @@ async function loadStats() {
     }
 
     try {
-        const res = await fetch("http://127.0.0.1:3000/api/comments/admin/stats", {
+        const res = await fetch("http://localhost:3000/api/comments/admin/stats", {
             method: "GET",
             credentials: "include"
         });
@@ -239,7 +240,7 @@ async function loadStats() {
 
         <div class="statCard">
             <h3>Latest Comment</h3>
-            <p>${stats.latestComment ? stats.latestComment : "None"}</p>
+            <p>${formatDashboardDate(stats.latestComment ? stats.latestComment : "None")}</p>
         </div>
     `;
 
@@ -253,7 +254,7 @@ async function loadStats() {
 //mt    Logout (no token, just clear cookie and redirect)
 logoutBtn.addEventListener("click", async () => {
     try {
-        const res = await fetch("http://127.0.0.1:3000/auth/logout", {
+        const res = await fetch("http://localhost:3000/auth/logout", {
             method: "POST",
             credentials: "include"
         });
@@ -268,6 +269,22 @@ logoutBtn.addEventListener("click", async () => {
         alert("Logout request failed");
     }
 });
+
+function formatDashboardDate(dateString) {
+    if (!dateString) return "No date";
+
+    const date = new Date(dateString);
+
+    if (Number.isNaN(date.getTime())) {
+        return "No date";
+    }
+
+    return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+    });
+}
 
 
 

@@ -1,28 +1,41 @@
-body {
+* {
     margin: 0;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    padding: 0;
     box-sizing: border-box;
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
+body {
+    font-family: Arial, sans-serif;
+    background: #e2e2e2;
+    /* padding: 0; */
 }
 
-.payTrackerPage {
-    max-width: 1400px;
-    margin: 0 auto;
+/*!         --   main   --           */
+/*mt   -- Header --     */
+header {
+    border: 1px solid red;
+    
 }
 
-#payTrackerStatus {
+/*st   -- Status Bar --     */
+.statusBar_Cont {
+    border: 1px solid green;
+}
+
+
+/*mt   -- PayTracker Toolbar --     */
+
+
+
+
+
+
+/* #payTrackerStatus {
     margin-bottom: 20px;
     font-weight: bold;
-}
+} */
 
-.payTrackerToolbar {
+/* .payTrackerToolbar {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,7 +46,7 @@ body {
     background: #ffffff;
     border: 1px solid #ccc;
     border-radius: 12px;
-}
+} */
 
 .payTrackerToolbar button,
 #createTableForm button {
@@ -264,4 +277,36 @@ body {
 
 .trackerStatGrandTotal p {
     font-weight: bold;
+}
+
+
+
+
+/*!  --------------  TABLET (Small) ---------------- */
+
+@media screen and (max-width: 649px) and (min-width: 450px) {
+    body {
+        background: lightcoral;
+    }
+}
+
+/*!    --------------  TABLET (Large ---------------- */
+@media screen and (max-width: 849px) and (min-width: 650px) {
+    body {
+        background: teal;
+    }
+}
+
+/*!   --------------  LAPTOP (Small)---------------- */
+@media screen and (max-width: 1299px) and (min-width: 850px) {
+    body {
+        background: orange;
+    }
+}
+
+/*!   --------------  LAPTOP (Large)---------------- */
+@media screen and (min-width: 1300px) {
+    body {
+        background: lightblue;
+    }
 }

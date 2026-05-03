@@ -141,9 +141,10 @@ router.put("/tables/:tableId/rows", isAdmin, (req, res) => {
                 cashTotal,
                 isPaid,
                 paidAmount,
+                paidDate,
                 createdAt
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `);
 
         for (const row of rows) {
@@ -157,6 +158,7 @@ router.put("/tables/:tableId/rows", isAdmin, (req, res) => {
                 Number(row.cashTotal) || 0,
                 row.isPaid ? 1 : 0,
                 Number(row.paidAmount) || 0,
+                row.paidDate || null,
                 new Date().toISOString()
             );
         }

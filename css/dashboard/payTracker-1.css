@@ -1,0 +1,291 @@
+/*!         ----------------        Pay Tracker Styles          -----------------------------         */
+
+/*mt   -- Universal --     */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*mt    -- CSS Variables --     (assign with Var() )*/
+:root {
+    --Debt-Number-Color: red;
+
+}
+
+
+/*!     --           Body         --         */
+body {
+    font-family: Arial, sans-serif;
+    background: #e2e2e2;
+
+}
+
+/*mt   -- Header --     */
+header {
+    display: block;
+    /* border: 1px solid black; */
+    margin-bottom: 3px;
+}
+
+header h1 {
+    padding: 10px;
+    text-align: center;
+    background-color: #0005;
+    color: white;
+    text-shadow: 2px 2px 4px black;
+
+}
+
+/*st   -- Status Bar --     */
+.statusBar_Cont {
+    border: 1px solid rgb(150, 150, 150);
+    background-color: #0005;
+    height: 20px;
+    margin-bottom: 2px;
+}
+
+#payTrackerStatus {
+    color: rgba(8, 8, 8, 0.589);
+    font-size: 10px;
+    margin-top: 5px;
+
+}
+
+/*mt   -- PayTracker Toolbar --     */
+.payTrackerToolbar_Cont {
+    /* border-bottom: 1px solid red; */
+    height: 40px;
+    margin-bottom: 35px;
+}
+
+.backBtn_Cont {
+    /* display: block; */
+    /* border: 1px solid teal; */
+
+    padding: 5px;
+}
+
+/*st   Back to Admin Dashboard Btn   */
+#backToAdminBtn {
+    display: block;
+    border: 1px solid rgb(97, 97, 97);
+    border-radius: 5px;
+    background-color: #0005;
+    color: white;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+#backToAdminBtn:hover,
+#toggleStatsBtn:hover,
+#toggleTablesBtn:hover {
+    background-color: #0008;
+    color: rgba(50, 205, 50, 0.404);
+}
+
+/*st   Tool Bar Buttons   */
+.toolBarBtn_Cont {
+    display: flex;
+    border-bottom: 1px solid #0005;
+    /* background-color: #0005; */
+    margin-top: 2px;
+    padding: 2px;
+}
+
+.toolBarBtn_Cont button {
+    border: 1px solid rgb(97, 97, 97);
+    border-radius: 5px;
+    background-color: #0005;
+    color: white;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+/*!     --           Main Content         --         */
+
+/*mt  -- Pay Tracker Content --   */
+/*@ #payTrackerContent {
+    border: 1px solid yellow;
+
+} */
+
+.payTrackerStatsSection {
+    border: 1px solid #0005;
+}
+
+.payTrackerStatsSection h2 {
+    background-color: #0005;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px;
+    text-shadow: 1px 1px 2px black;
+}
+
+/*mt     --    Active Jobs Content    --    */
+#payTrackerStatsBar {
+    border: 1px solid red;
+
+    padding: 1px;
+}
+
+
+.trackerStatsGroup {
+    display: grid;
+    border: 1px solid green;
+    grid-template-columns: auto auto;
+
+    margin-bottom: 5px;
+    padding-bottom: 10px;
+    overflow-y: hidden;
+}
+
+/*st   -- Active Jobs title --  */
+.trackerStatsGroup h3 {
+    grid-column: 1 / span 2;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.048);
+    margin-bottom: 5px;
+}
+
+/*st   -- All job balances -- */
+.trackerStatsGroup p {
+    grid-column: 1 / span 2;
+    margin-left: 5px;
+    font-size: 12px;
+    text-align: left;
+}
+
+
+.trackerStatsGroup p span {
+    font-weight: bold;
+    color: var(--Debt-Number-Color);
+}
+
+/*st     --    Active Jobs     --    */
+/*/    Jobs Card Container   */
+.trackerStatRow {
+    display: inline-block;
+    border: 1px solid #0005;
+    border-radius: 5px;
+    justify-self: center;
+    width: 150px;
+    margin-left: 3px;
+    margin-top: 5px;
+
+}
+
+.trackerStatRow p {
+    text-align: center;
+    font-size: 10px;
+}
+
+/*mt     --    Inactive Jobs Content    --    */
+
+#toggleInactiveStatsBtn {
+    /* display: block; */
+    grid-column: 1 / span 2;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    padding: 1px;
+}
+
+.inactiveStatsGroup {
+    border: 1px solid gold;
+    grid-column: 1 / span 2;
+    padding-bottom: 10px;
+
+}
+
+
+/*mt     --     Jobs Pay Tables      --      */
+/*st -- Job Container --  */
+.payTableWrapper {
+    border: 1px solid #0005;
+    border-radius: 12px;
+    margin-top: 20px;
+    background: #fafafa;
+
+    padding: 2px;
+}
+
+.payTableHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+/*
+.payTableHeader h3 {
+    margin: 0;
+} */
+
+.addRowBtn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.tableScroll {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/*st  -- Table --  */
+.payTable {
+    border: 1px solid black;
+    width: 100%;
+    min-width: 1100px;
+    border-collapse: collapse;
+    background: #e2e2e2;
+}
+
+.payTable th,
+.payTable td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    vertical-align: top;
+}
+
+
+
+
+
+
+
+
+
+/*!  --------------  TABLET (Small) ---------------- */
+
+@media screen and (max-width: 649px) and (min-width: 450px) {
+    body {
+        background: lightcoral;
+    }
+}
+
+/*!    --------------  TABLET (Large ---------------- */
+@media screen and (max-width: 849px) and (min-width: 650px) {
+    body {
+        background: teal;
+    }
+}
+
+/*!   --------------  LAPTOP (Small)---------------- */
+@media screen and (max-width: 1299px) and (min-width: 850px) {
+    body {
+        background: orange;
+    }
+}
+
+/*!   --------------  LAPTOP (Large)---------------- */
+@media screen and (min-width: 1300px) {
+    body {
+        background: lightblue;
+    }
+}

@@ -56,6 +56,15 @@ try {
 try {
   db.prepare(`
     ALTER TABLE pay_table_rows
+    ADD COLUMN paidDate TEXT
+  `).run();
+} catch (err) {
+  // column may already exist, ignore
+}
+
+try {
+  db.prepare(`
+    ALTER TABLE pay_table_rows
     ADD COLUMN paidAmount REAL DEFAULT 0
   `).run();
 } catch (err) {

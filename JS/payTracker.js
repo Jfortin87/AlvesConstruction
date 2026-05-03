@@ -7,9 +7,17 @@ const tablesContainer = document.getElementById("tablesContainer");
 
 const payTrackerStatsBar = document.getElementById("payTrackerStatsBar");
 
+const toggleStatsBtn = document.getElementById("toggleStatsBtn");
+const toggleTablesBtn = document.getElementById("toggleTablesBtn");
+
+const payTrackerStatsSection = document.querySelector(".payTrackerStatsSection");
+const createTableSection = document.querySelector(".createTableSection");
+const tablesSection = document.querySelector(".tablesSection");
+
+//mt - checkPayTrackerAccess -: Verify if the user has admin access to view the pay tracker, and load saved tables if access is granted
 async function checkPayTrackerAccess() {
     try {
-        const res = await fetch("http://127.0.0.1:3000/check-user", {
+        const res = await fetch("http://localhost:3000/check-user", {
             method: "GET",
             credentials: "include"
         });
@@ -39,7 +47,7 @@ async function checkPayTrackerAccess() {
 
 
 
-
+//mt - createDayBoxes -: Generate HTML for a set of 20 day boxes that can be toggled between 0, 0.5, and 1 values for tracking work days in a pay table row
 function createDayBoxes() {
     let boxesHTML = "";
 
@@ -54,7 +62,7 @@ function createDayBoxes() {
     return boxesHTML;
 }
 
-//
+//mt - createStarterRows -: Generate HTML for a set of empty starter rows with inputs and day boxes for a new table
 function createStarterRows() {
     let rowsHTML = "";
 
@@ -127,34 +135,89 @@ function updatePayTrackerStatsBar() {
         return;
     }
 
-    let allTablesPayout = 0;
-    let allTablesRemaining = 0;
-    let statsHTML = "";
+    let activePayout = 0;
+    let activeRemaining = 0;
+
+    let inactivePayout = 0;
+    let inactiveRemaining = 0;
+
+    let activeHTML = "";
+    let inactiveHTML = "";
 
     tableWrappers.forEach((tableWrapper, index) => {
         const tableName = tableWrapper.querySelector(".payTableTitleArea h3")?.textContent || `Table ${index + 1}`;
         const tableTotal = Number(tableWrapper.querySelector(".tableTotalValue")?.textContent) || 0;
         const tableRemaining = Number(tableWrapper.querySelector(".tableRemainingValue")?.textContent) || 0;
 
-        allTablesPayout += tableTotal;
-        allTablesRemaining += tableRemaining;
+        const workerInputs = Array.from(tableWrapper.querySelectorAll(".workerName"));
+        const filledWorkers = workerInputs.filter(input => input.value.trim() !== "");
 
-        statsHTML += `
+        const workerCount = filledWorkers.length;
+        const jobStarted = tableWrapper.querySelector(".tableCreatedDate")?.textContent || "Job Started: Unknown";
+
+        const rows = Array.from(tableWrapper.querySelectorAll("tbody tr"));
+
+        const realWorkerRows = rows.filter(row => {
+            const workerName = row.querySelector(".workerName")?.value.trim() || "";
+            return workerName !== "";
+        });
+
+        const allWorkersPaid =
+            realWorkerRows.length > 0 &&
+            realWorkerRows.every(row => row.querySelector(".isPaid")?.checked);
+
+        const statCard = `
             <div class="trackerStatRow">
-                <p><strong>${tableName}</strong> - Workers Total Payout: $${tableTotal.toFixed(2)}</p>
-                <p><strong>${tableName}</strong> - Remaining Balance: $${tableRemaining.toFixed(2)}</p>
+                <p><strong>${tableName}</strong></p>
+                <p>Workers Total Payout: $${tableTotal.toFixed(2)}</p>
+                <p>Remaining Balance: $<span class="red">${tableRemaining.toFixed(2)}</span></p>
+                <p>Total Workers: ${workerCount}</p>
+                <p>${jobStarted}</p>
             </div>
+
         `;
+
+        if (allWorkersPaid) {
+            inactivePayout += tableTotal;
+            inactiveRemaining += tableRemaining;
+            inactiveHTML += statCard;
+        } else {
+            activePayout += tableTotal;
+            activeRemaining += tableRemaining;
+            activeHTML += statCard;
+        }
     });
 
-    statsHTML += `
-        <div class="trackerStatRow trackerStatGrandTotal">
-            <p><strong>Total Payout (All Tables):</strong> $${allTablesPayout.toFixed(2)}</p>
-            <p><strong>Total Remaining Balance (All Tables):</strong> $${allTablesRemaining.toFixed(2)}</p>
+    payTrackerStatsBar.innerHTML = `
+        <div class="trackerStatsGroup activeStatsGroup">
+            <h3>Active Jobs</h3>
+            <p><strong>All Active Tables Payout:</strong> $${activePayout.toFixed(2)}</p>
+            <p><strong>All Active Tables Remaining Balance:</strong> $<span class="red">${activeRemaining.toFixed(2)}</span></p>
+
+            ${activeHTML || "<p>No active jobs.</p>"}
+        </div>
+        <br/>
+
+        <div class="trackerStatsGroup inactiveStatsGroup">
+            <h3>Inactive Jobs</h3>
+            <button type="button" id="toggleInactiveStatsBtn">Show/Hide Inactive Jobs</button>
+
+            <div id="inactiveStatsContent" style="display: none;">
+                <p><strong>All Inactive Tables Payout:</strong> $${inactivePayout.toFixed(2)}</p>
+                <p><strong>All Inactive Tables Remaining Balance:</strong> $${inactiveRemaining.toFixed(2)}</p>
+
+                ${inactiveHTML || "<p>No inactive jobs.</p>"}
+            </div>
         </div>
     `;
 
-    payTrackerStatsBar.innerHTML = statsHTML;
+    const toggleInactiveStatsBtn = document.getElementById("toggleInactiveStatsBtn");
+    const inactiveStatsContent = document.getElementById("inactiveStatsContent");
+
+    toggleInactiveStatsBtn.addEventListener("click", () => {
+        inactiveStatsContent.style.display =
+            inactiveStatsContent.style.display === "none" ? "block" : "none";
+    });
 }
 
 //mt Create a pay table element based on the provided table data
@@ -214,7 +277,7 @@ async function createPayTable(table) {
 
     async function loadRows() {
         try {
-            const res = await fetch(`http://127.0.0.1:3000/api/pay-tracker/tables/${table.id}/rows`, {
+            const res = await fetch(`http://localhost:3000/api/pay-tracker/tables/${table.id}/rows`, {
                 method: "GET",
                 credentials: "include"
             });
@@ -248,7 +311,10 @@ async function createPayTable(table) {
                                 <input type="checkbox" class="isPaid">
                                 Paid
                             </label>
+
+                            <p class="paidDateText" data-paid-date="">Paid Date: - </p>
                             <br><br>
+
                             <button type="button" class="deleteRowBtn" onclick="deletePayRow(this)">Delete Row</button>
                         </td>
                     `;
@@ -305,6 +371,11 @@ async function createPayTable(table) {
                             <input type="checkbox" class="isPaid" ${row.isPaid ? "checked" : ""}>
                             Paid
                         </label>
+
+                        <p class="paidDateText" data-paid-date="${row.paidDate || ""}">
+                        Paid Date: ${row.paidDate ? formatCreatedDate(row.paidDate) : " - "}
+                        </p>
+
                         <br><br>
                         <button type="button" class="deleteRowBtn" onclick="deletePayRow(this)">Delete Row</button>
                     </td>
@@ -351,6 +422,11 @@ async function createPayTable(table) {
                     <input type="checkbox" class="isPaid">
                     Paid
                 </label>
+                <p class="paidDateText" data-paid-date="">
+                Paid Date: -
+                </p>
+
+
                 <br><br>
                 <button type="button" class="deleteRowBtn" onclick="deletePayRow(this)">Delete Row</button>
             </td>
@@ -370,6 +446,7 @@ async function createPayTable(table) {
                 const cashTotal = Number(row.querySelector(".cashTotal")?.textContent) || 0;
                 const paidAmount = Number(row.querySelector(".paidAmount")?.value) || 0;
                 const isPaid = row.querySelector(".isPaid")?.checked || false;
+                const paidDate = row.querySelector(".paidDateText")?.dataset.paidDate || null;
 
                 const dayBoxes = row.querySelectorAll(".dayBox");
                 const dayValues = Array.from(dayBoxes).map(box => Number(box.dataset.value || 0));
@@ -381,11 +458,12 @@ async function createPayTable(table) {
                     totalDays,
                     cashTotal,
                     paidAmount,
-                    isPaid
+                    isPaid,
+                    paidDate
                 };
             });
 
-            const res = await fetch(`http://127.0.0.1:3000/api/pay-tracker/tables/${table.id}/rows`, {
+            const res = await fetch(`http://localhost:3000/api/pay-tracker/tables/${table.id}/rows`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -415,7 +493,7 @@ async function createPayTable(table) {
         if (!confirmed) return;
 
         try {
-            const res = await fetch(`http://127.0.0.1:3000/api/pay-tracker/tables/${table.id}`, {
+            const res = await fetch(`http://localhost:3000/api/pay-tracker/tables/${table.id}`, {
                 method: "DELETE",
                 credentials: "include"
             });
@@ -531,7 +609,7 @@ function updateRowTotals(box) {
 //mt - loadSavedTables -: Fetches saved pay tables from the server and creates table elements for each one
 async function loadSavedTables() {
     try {
-        const res = await fetch("http://127.0.0.1:3000/api/pay-tracker/tables", {
+        const res = await fetch("http://localhost:3000/api/pay-tracker/tables", {
             method: "GET",
             credentials: "include"
         });
@@ -568,20 +646,52 @@ function deletePayRow(button) {
 
 //!  -------     Event Listeners      -------
 
-
+// Navigate back to admin dashboard
 backToAdminBtn.addEventListener("click", () => {
     window.location.href = "/html/dashboard/dashboard.html";
 });
+
+// Toggle stats section
+toggleStatsBtn.addEventListener("click", () => {
+    const isHidden = payTrackerStatsSection.style.display === "none";
+
+    payTrackerStatsSection.style.display = isHidden ? "block" : "none";
+
+    toggleStatsBtn.textContent = isHidden
+        ? "Hide Stats"
+        : "Show Stats";
+
+    if (isHidden) {
+        updatePayTrackerStatsBar();
+    }
+});
+
+// Toggle tables and create table form section
+toggleTablesBtn.addEventListener("click", () => {
+    const isHidden = tablesSection.style.display === "none";
+
+    createTableSection.style.display = isHidden ? "block" : "none";
+    tablesSection.style.display = isHidden ? "block" : "none";
+
+    toggleTablesBtn.textContent = isHidden
+        ? "Hide Tables"
+        : "Show Tables";
+});
+
 
 
 document.addEventListener("change", (e) => {
     if (e.target.classList.contains("isPaid")) {
         const row = e.target.closest("tr");
+
+        if (!row) return;
+
         const firstBox = row.querySelector(".dayBox");
         const paidAmountInput = row.querySelector(".paidAmount");
         const cashTotalCell = row.querySelector(".cashTotal");
+        const paidDateText = row.querySelector(".paidDateText");
 
-        if (!row || !firstBox || !paidAmountInput || !cashTotalCell) return;
+        if (!firstBox || !paidAmountInput || !cashTotalCell) return;
 
         const isChecked = e.target.checked;
         const cashTotal = Number(cashTotalCell.textContent) || 0;
@@ -589,14 +699,25 @@ document.addEventListener("change", (e) => {
         if (isChecked) {
             paidAmountInput.value = cashTotal.toFixed(2);
             paidAmountInput.readOnly = true;
+
+            const paidDate = new Date().toISOString();
+
+            if (paidDateText) {
+                paidDateText.dataset.paidDate = paidDate;
+                paidDateText.textContent = `Paid Date: ${formatCreatedDate(paidDate)}`;
+            }
         } else {
             paidAmountInput.readOnly = false;
+
+            if (paidDateText) {
+                paidDateText.dataset.paidDate = "";
+                paidDateText.textContent = "Paid Date: Not paid";
+            }
         }
 
         updateRowTotals(firstBox);
     }
 });
-
 
 document.addEventListener("input", (e) => {
     if (e.target.classList.contains("dailyPay")) {
@@ -631,7 +752,7 @@ createTableForm.addEventListener("submit", async (e) => {
     }
 
     try {
-        const res = await fetch("http://127.0.0.1:3000/api/pay-tracker/tables", {
+        const res = await fetch("http://localhost:3000/api/pay-tracker/tables", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

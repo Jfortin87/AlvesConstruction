@@ -11,43 +11,32 @@
 </head>
 
 <body>
-    <!-- <h1>Admin Dashboard</h1>
-
-    <p id="adminStatus">Checking login...</p>
-    <button id="logoutBtn">Logout</button>
-
-    <section>
-        <h2>Comment Analytics</h2>
-        <button id="loadStatsBtn">Show Stats</button>
-
-        <div id="statsContainer"></div>
-    </section>
-
-    <section id="adminContent" style="display: none;">
-        <h2>Welcome, Admin</h2>
-        <p>You are logged in and allowed to view this page.</p>
-
-
-        <hr>
-
-        <h2>Comments Management</h2>
-        <button id="loadCommentsBtn">Show Comments</button>
-
-        <div id="commentsContainer"></div>
-    </section> -->
-
-    <section id="adminContent" style="display: none;">
-        <h2>Welcome, Admin</h2>
-        <p id="adminStatus">You are logged in and allowed to view this page.</p>
-
-        <div class="adminToolbar">
-            <button id="loadStatsBtn">Load Stats</button>
-            <button id="loadCommentsBtn">Load Comments</button>
-            <button id="payTrackerBtn">Pay Tracker</button>
-
+    <!--mt     --  Header  --    -->
+    <header class="dashboardHeader_Cont">
+        <div class="logoutBtn_Cont">
             <button id="logoutBtn">Logout</button>
         </div>
 
+        <div class="welcomeBanner_Cont">
+            <h3>Admin Dashboard</h3>
+            <p id="adminStatus">You are NOT logged in!</p>
+        </div>
+
+    </header>
+
+    <!--mt     --  Admin Features Navigation  --    -->
+    <section id="adminContent" style="display: none;">
+        <div class="adminToolbar">
+            <button id="loadStatsBtn">Show Stats</button>
+            <button id="loadCommentsBtn">Show Comments</button>
+            <button id="payTrackerBtn">Pay Tracker</button>
+
+        </div>
+
+    </section>
+
+    <!--mt     --  Stats and Comments  --    -->
+    <section>
         <div id="statsContainer" class="statsBanner"></div>
 
         <div id="commentsContainer" class="commentsSection"></div>

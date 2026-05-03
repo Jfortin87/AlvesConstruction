@@ -4,29 +4,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/dashboard/payTracker.css">
+    <link rel="stylesheet" href="/css/dashboard/payTracker-1.css">
 
 
     <title>Pay Tracker</title>
 </head>
 
 <body>
-    <main class="payTrackerPage">
-        <h1>Pay Tracker</h1>
+    <main>
 
-        <p id="payTrackerStatus">Checking admin access...</p>
+        <!--mt   -- Header --     -->
+        <header>
+            <h1>Pay Tracker</h1>
 
-        <section id="payTrackerContent" style="display: none;">
-            <div class="payTrackerToolbar">
-                <button id="backToAdminBtn">Back to Admin Dashboard</button>
+            <div class="statusBar_Cont">
+                <p id="payTrackerStatus">Checking admin access...</p>
             </div>
 
-            <section class="payTrackerStatsSection">
-                <h2>Pay Tracker Stats</h2>
-                <div id="payTrackerStatsBar"></div>
-            </section>
+        </header>
 
-            <section class="createTableSection">
+        <!--mt   -- PayTracker Toolbar --     -->
+        <section class="payTrackerToolbar_Cont">
+            <div class="backBtn_Cont">
+                <button id="backToAdminBtn">Admin Dashboard</button>
+
+            </div>
+
+            <div class="toolBarBtn_Cont">
+                <button type="button" id="toggleStatsBtn">Show Stats</button>
+                <button type="button" id="toggleTablesBtn">Show Tables</button>
+            </div>
+
+        </section>
+
+        <!--!           ----    Main Content    ----             -->
+
+        <!--mt  -- Pay Tracker Content --   -->
+        <!--st  -- Jobs Stats --   -->
+        <section id="payTrackerContent" style="display: none;">
+
+            <div class="payTrackerStatsSection" style="display: none;">
+                <h2>Pay Tracker Stats</h2>
+
+                <!--/ Stats will be displayed here (styles in JS/payTracker.js) -->
+                <div id="payTrackerStatsBar"></div>
+            </div>
+
+        </section>
+
+        <!--st  -- Jobs Pay Tables --   -->
+        <section>
+            <div class="createTableSection" style="display: none;">
                 <h2>Create Pay Table</h2>
 
                 <form id="createTableForm">
@@ -35,13 +63,17 @@
 
                     <button type="submit">Create Table</button>
                 </form>
-            </section>
+            </div>
 
-            <section class="tablesSection">
+            <div class="tablesSection" style="display: none;">
                 <h2>Pay Tables</h2>
                 <div id="tablesContainer"></div>
-            </section>
+
+            </div>
+
         </section>
+
+
     </main>
 
     <script src="/JS/payTracker.js"></script>
